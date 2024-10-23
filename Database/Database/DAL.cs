@@ -71,5 +71,19 @@ namespace Airline.DAL
                 Console.WriteLine(e.Message);
             }
         }
+
+        public T? GetById(int id)
+        {
+            try
+            {
+                return context.Set<T>().Find(id);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Aircrafts list error!");
+                Console.WriteLine(e.Message);
+                return null;
+            }
+        }
     }
 }
