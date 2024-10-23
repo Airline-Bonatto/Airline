@@ -51,6 +51,23 @@ namespace AirlineAPI.Controllers
             return Results.Ok(new AircraftDetailView(aircraft));
         }
 
+        
+        [HttpDelete("{id}")]
+        public IResult Delete(int id)
+        {
+            var context = new AirlineContext();
+            var dal = new DAL<Aircraft>(context);
+    
+            var aircraft = dal.GetById(id);
+
+            if(aircraft == null)
+            {
+                return Results.NotFound("Aircraft not found!");
+            }
+            dal.Remove(aircraft);
+
+            return Results.NoContent();
+        }
     }
 
 
