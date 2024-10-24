@@ -12,11 +12,11 @@ namespace AirlineAPI.Controllers
     public class AircraftController : ControllerBase
     {
         [HttpPost("create")]
-        public IResult Create([FromBody] Aircraft aircraft)
+        public IResult Create([FromBody] AircraftCreateDTO createData)
         {
             var context = new AirlineContext();
             var dal = new DAL<Aircraft>(context);
-            dal.Register(aircraft);
+            dal.Register(new Aircraft(createData));
 
             return Results.Created();
             
@@ -61,7 +61,7 @@ namespace AirlineAPI.Controllers
                 return Results.NotFound("Aircraft not found!");
             }
 
-            aircraft.update(updateData);
+            aircraft.Update(updateData);
             dal.Update(aircraft);
 
 
