@@ -1,7 +1,4 @@
-﻿
-
-
-using AirlineAPIV2.Models;
+﻿using AirlineAPIV2.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace Airline.Database

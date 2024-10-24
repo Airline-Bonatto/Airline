@@ -1,10 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Airline.DAL;
 using Airline.Database;
 using AirlineAPI.Dataviews;
+using AirlineAPI.DTO;
 using AirlineAPIV2.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,7 +11,7 @@ namespace AirlineAPI.Controllers
     [Route("aircraft")]
     public class AircraftController : ControllerBase
     {
-        [HttpPost()]
+        [HttpPost("create")]
         public IResult Create([FromBody] Aircraft aircraft)
         {
             var context = new AirlineContext();
@@ -51,9 +48,28 @@ namespace AirlineAPI.Controllers
             return Results.Ok(new AircraftDetailView(aircraft));
         }
 
-        
+        [HttpPost("update/{id}")]
+        public IResult Update([FromBody] AircraftUpdateDto updateData, int id)
+        {
+            var context = new AirlineContext();
+            var dal = new DAL<Aircraft>(context);
+
+            var aircraft = dal.GetById(id);
+
+            if(aircraft == null)
+            {
+                return Results.NotFound("Aircraft not found!");
+            }
+
+            aircraft.update(updateData);
+            dal.Update(aircraft);
+
+
+            return Results.Ok();
+        }
+
         [HttpDelete("{id}")]
-        public IResult Delete(int id)
+        public IResult Remove(int id)
         {
             var context = new AirlineContext();
             var dal = new DAL<Aircraft>(context);
