@@ -1,3 +1,7 @@
+using Airline.DAL;
+using Airline.Database;
+using AirlineAPIV2.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -7,8 +11,11 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-var app = builder.Build();
 
+builder.Services.AddDbContext<AirlineContext>();
+builder.Services.AddTransient<DAL<Aircraft>>();
+
+var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

@@ -12,10 +12,8 @@ namespace AirlineAPI.Controllers
     public class AircraftController : ControllerBase
     {
         [HttpPost("create")]
-        public IResult Create([FromBody] AircraftCreateDTO createData)
+        public IResult Create([FromServices] DAL<Aircraft> dal, [FromBody] AircraftCreateDTO createData)
         {
-            var context = new AirlineContext();
-            var dal = new DAL<Aircraft>(context);
             dal.Register(new Aircraft(createData));
 
             return Results.Created();
@@ -23,21 +21,15 @@ namespace AirlineAPI.Controllers
         }
 
         [HttpGet("list")]
-        public IResult List()
+        public IResult List([FromServices] DAL<Aircraft> dal)
         {
-            var context = new AirlineContext();
-            var dal = new DAL<Aircraft>(context);
-
             return Results.Ok(dal.List());
         }
 
 
         [HttpGet("{id}")]
-        public IResult Detail(int id)
+        public IResult Detail([FromServices] DAL<Aircraft> dal, int id)
         {
-            var context = new AirlineContext();
-            var dal = new DAL<Aircraft>(context);
-
             var aircraft = dal.GetById(id);
 
             if(aircraft == null)
@@ -49,11 +41,8 @@ namespace AirlineAPI.Controllers
         }
 
         [HttpPost("update/{id}")]
-        public IResult Update([FromBody] AircraftUpdateDto updateData, int id)
+        public IResult Update([FromServices] DAL<Aircraft> dal, [FromBody] AircraftUpdateDto updateData, int id)
         {
-            var context = new AirlineContext();
-            var dal = new DAL<Aircraft>(context);
-
             var aircraft = dal.GetById(id);
 
             if(aircraft == null)
@@ -69,11 +58,8 @@ namespace AirlineAPI.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IResult Remove(int id)
+        public IResult Remove([FromServices] DAL<Aircraft> dal,int id)
         {
-            var context = new AirlineContext();
-            var dal = new DAL<Aircraft>(context);
-    
             var aircraft = dal.GetById(id);
 
             if(aircraft == null)
