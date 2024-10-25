@@ -19,5 +19,12 @@ namespace Airline.Database
                 .UseLazyLoadingProxies();
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Aircraft>()
+                .HasMany(a=>a.Routes)
+                .WithOne(r=>r.Aircraft);
+        }
+
     }
 }

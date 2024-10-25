@@ -6,8 +6,8 @@ namespace AirlineAPIV2.Models
     public class Aircraft
     {
         public int AircraftID {  get; set; }
-        public virtual ICollection<Route>? Routes { get; set; } = [];
-        public string ?Model { get; set; }
+        public virtual ICollection<Route> Routes { get; set; } = [];
+        public string Model { get; set; } = string.Empty;
         public int Capacity { get; set; } 
         public double Range { get; set; }  
 
