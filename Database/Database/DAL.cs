@@ -21,7 +21,7 @@ namespace Airline.DAL
             {
                 Console.WriteLine("Aircrafts list error!");
                 Console.WriteLine(e.Message);
-                return [];
+                throw;
             }
         }
         public void Register(T model)
@@ -36,6 +36,7 @@ namespace Airline.DAL
                 Console.WriteLine("Model register error!");
                 Console.WriteLine(e.Message);
                 Console.WriteLine(e.StackTrace);
+                throw;
             }
         }
 
@@ -50,6 +51,7 @@ namespace Airline.DAL
             {
                 Console.WriteLine("Aircraft update error!");
                 Console.WriteLine(e.Message);
+                throw;
             }
         }
 
@@ -64,6 +66,7 @@ namespace Airline.DAL
             {
                 Console.WriteLine("Aircraft remove error!");
                 Console.WriteLine(e.Message);
+                throw;
             }
         }
 
@@ -77,7 +80,7 @@ namespace Airline.DAL
             {
                 Console.WriteLine("Aircrafts list error!");
                 Console.WriteLine(e.Message);
-                return null;
+                throw;
             }
         }
     }

@@ -1,5 +1,4 @@
 using Airline.DAL;
-using Airline.Database;
 using AirlineAPI.Dataviews;
 using AirlineAPI.DTO;
 using AirlineAPIV2.Models;
@@ -71,6 +70,4 @@ namespace AirlineAPI.Controllers
             return Results.NoContent();
         }
     }
-
-
 }
