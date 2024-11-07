@@ -2,6 +2,7 @@ using System.Text.Json.Serialization;
 using Airline.DAL;
 using Airline.Database;
 using AirlineAPI.Models;
+using AirlineAPI.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -22,6 +23,9 @@ builder.Services.AddDbContext<AirlineContext>((options)=>{
 builder.Services.AddTransient<DAL<Aircraft>>();
 
 builder.Services.Configure<Microsoft.AspNetCore.Http.Json.JsonOptions>(options => options.SerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
+
+
+builder.Services.AddSingleton<IRouteCreationService, RouteCreationService>();
 
 var app = builder.Build();
 // Configure the HTTP request pipeline.
