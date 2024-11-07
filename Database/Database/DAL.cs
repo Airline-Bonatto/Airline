@@ -1,4 +1,5 @@
 ﻿using Airline.Database;
+using AirlineAPI.Exceptions;
 
 namespace Airline.DAL
 {
@@ -70,11 +71,16 @@ namespace Airline.DAL
             }
         }
 
-        public T? GetById(int id)
+        public T GetById(int id)
         {
             try
             {
-                return context.Set<T>().Find(id);
+                var entity = context.Set<T>().Find(id);
+                if(entity is null)
+                {
+                    throw new EntityNotFoundException();
+                }
+                return entity;
             }
             catch (Exception e)
             {

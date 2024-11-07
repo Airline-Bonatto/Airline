@@ -1,7 +1,7 @@
 ﻿
 using AirlineAPI.DTO;
 
-namespace AirlineAPIV2.Models
+namespace AirlineAPI.Models
 {
     public class Aircraft
     {
@@ -29,6 +29,11 @@ namespace AirlineAPIV2.Models
             {
                 this.Range = updateData.Range;
             }
+        }
+
+        public void AddRoute(Route route)
+        {
+            this.Routes.Add(route);
         }
 
     }

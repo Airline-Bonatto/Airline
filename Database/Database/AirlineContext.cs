@@ -1,4 +1,4 @@
-﻿using AirlineAPIV2.Models;
+﻿using AirlineAPI.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace Airline.Database
@@ -7,14 +7,20 @@ namespace Airline.Database
     {
 
         public DbSet<Aircraft> Aircraft {  get; set; }
-        public DbSet<AirlineAPIV2.Models.Route> Route { get; set; }
+        public DbSet<AirlineAPI.Models.Route> Route { get; set; }
 
-        // private string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=Airline;Integrated Security=True;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
-        private string connectionString = "Server=tcp:airline-server.database.windows.net,1433;Initial Catalog=Airline;Persist Security Info=False;User ID=gjusto;Password=DefaultPassword@2024;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=1000;";
+        private string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=Airline;Integrated Security=True;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
+        public AirlineContext(DbContextOptions options) : base(options)
+        {
 
+        }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            if (optionsBuilder.IsConfigured)
+            {
+                return;
+            }
             optionsBuilder
                 .UseSqlServer(connectionString)
                 .UseLazyLoadingProxies();

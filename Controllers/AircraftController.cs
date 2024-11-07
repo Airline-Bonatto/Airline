@@ -1,7 +1,7 @@
 using Airline.DAL;
 using AirlineAPI.Dataviews;
 using AirlineAPI.DTO;
-using AirlineAPIV2.Models;
+using AirlineAPI.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AirlineAPI.Controllers

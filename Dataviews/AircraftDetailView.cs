@@ -1,4 +1,4 @@
-using AirlineAPIV2.Models;
+using AirlineAPI.Models;
 
 namespace AirlineAPI.Dataviews
 {
