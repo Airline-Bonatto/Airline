@@ -40,7 +40,7 @@ namespace AirlineAPI.Controllers
         }
 
         [HttpPost("update/{id}")]
-        public IResult Update(DAL<Aircraft> dal, [FromBody] AircraftUpdateDto updateData, int id)
+        public IResult Update(DAL<Aircraft> dal, [FromBody] AircraftUpdateDTO updateData, int id)
         {
             var aircraft = dal.GetById(id);
 

@@ -1,5 +1,16 @@
 
+using System.ComponentModel.DataAnnotations;
+
 namespace AirlineAPI.DTO
 {
-    public record AircraftCreateDTO(string Model, int Capacity, double Range);
+    public record AircraftCreateDTO(
+        [Required]
+        string Model, 
+
+        [Required]
+        int Capacity, 
+        
+        [Required]
+        double Range
+    );
 }

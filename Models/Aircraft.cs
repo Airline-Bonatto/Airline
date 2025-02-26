@@ -19,7 +19,7 @@ namespace AirlineAPI.Models
             this.Range = createData.Range;
         }
 
-        public void Update(AircraftUpdateDto updateData)
+        public void Update(AircraftUpdateDTO updateData)
         {
             if(updateData.Capacity != this.Capacity)
             {
