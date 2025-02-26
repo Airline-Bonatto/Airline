@@ -1,7 +1,6 @@
 
 using Airline.DAL;
 using AirlineAPI.DTO;
-using AirlineAPI.Exceptions;
 using AirlineAPI.Models;
 using AirlineAPI.Verifications.Route;
 
@@ -27,8 +26,8 @@ namespace AirlineAPI.Services
                     Distance = createData.Distance
                 };
 
-                // aircraft.AddRoute(route);
-                // aircraftDal.Update(aircraft);
+                aircraft.AddRoute(route);
+                aircraftDal.Update(aircraft);
             }catch (Exception)
             {
                 throw;
