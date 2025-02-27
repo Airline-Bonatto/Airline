@@ -20,9 +20,12 @@ namespace AirlineAPI.Controllers
         }
 
         [HttpGet("list")]
-        public IResult List(DAL<Aircraft> dal)
+        public IResult List(
+            DAL<Aircraft> dal, 
+            [FromQuery] int page = 1, 
+            [FromQuery] int perPage = 10)
         {
-            return Results.Ok(dal.List());
+            return Results.Ok(dal.List().Skip((page - 1) * perPage).Take(perPage).Select(aircraft => new AircraftDetailView(aircraft)));
         }
 
 
