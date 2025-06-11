@@ -1,7 +1,10 @@
 ﻿
+using AirlineAPI.DTO;
+
 namespace AirlineAPI;
 
 public interface IAircraftRepository
 {
-    public IEnumerable<AircraftListDataView> GetAircraftsByCapacity();
+    public IEnumerable<AircraftListDataView> GetAircrafts();
+    public void Insert(AircraftCreateDTO createData);
 }

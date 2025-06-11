@@ -18,9 +18,9 @@ namespace AirlineAPI.Controllers
         }
 
         [HttpPost("create")]
-        public IResult Create(DAL<Aircraft> dal, [FromBody] AircraftCreateDTO createData)
+        public IResult Create([FromBody] AircraftCreateDTO createData)
         {
-            dal.Register(new Aircraft(createData));
+            _aircraftRepository.Insert(createData);
 
             return Results.Created();
             
@@ -31,7 +31,7 @@ namespace AirlineAPI.Controllers
             [FromQuery] int page = 1, 
             [FromQuery] int perPage = 10)
         {
-            return Results.Ok( _aircraftRepository.GetAircraftsByCapacity());
+            return Results.Ok( _aircraftRepository.GetAircrafts());
         }
 
 
