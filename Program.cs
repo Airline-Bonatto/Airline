@@ -1,6 +1,7 @@
 using System.Text.Json.Serialization;
 using Airline.DAL;
 using Airline.Database;
+using AirlineAPI;
 using AirlineAPI.Models;
 using AirlineAPI.Services;
 using AirlineAPI.Verifications.Route;
@@ -28,6 +29,7 @@ builder.Services.Configure<Microsoft.AspNetCore.Http.Json.JsonOptions>(options =
 
 builder.Services.AddScoped<ICreateRouteVerification, RouteDistanceVerification>();
 builder.Services.AddScoped<IRouteCreationService, RouteCreationService>();
+builder.Services.AddScoped<IAircraftRepository, AircraftRepository>();
 
 var app = builder.Build();
 // Configure the HTTP request pipeline.

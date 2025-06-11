@@ -10,6 +10,13 @@ namespace AirlineAPI.Controllers
     [Route("aircraft")]
     public class AircraftController : ControllerBase
     {
+
+        private readonly IAircraftRepository _aircraftRepository;
+        public AircraftController(IAircraftRepository aircraftRepository)
+        {
+            _aircraftRepository = aircraftRepository;
+        }
+
         [HttpPost("create")]
         public IResult Create(DAL<Aircraft> dal, [FromBody] AircraftCreateDTO createData)
         {
@@ -21,11 +28,10 @@ namespace AirlineAPI.Controllers
 
         [HttpGet("list")]
         public IResult List(
-            DAL<Aircraft> dal, 
             [FromQuery] int page = 1, 
             [FromQuery] int perPage = 10)
         {
-            return Results.Ok(dal.List().Skip((page - 1) * perPage).Take(perPage).Select(aircraft => new AircraftDetailView(aircraft)));
+            return Results.Ok( _aircraftRepository.GetAircraftsByCapacity());
         }
 
 
