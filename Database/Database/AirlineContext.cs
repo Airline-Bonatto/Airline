@@ -1,5 +1,6 @@
 ﻿using AirlineAPI;
 using AirlineAPI.Models;
+
 using Microsoft.EntityFrameworkCore;
 
 namespace Airline.Database

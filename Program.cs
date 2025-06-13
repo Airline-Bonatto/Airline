@@ -1,10 +1,13 @@
 using System.Text.Json.Serialization;
+
 using Airline.DAL;
 using Airline.Database;
+
 using AirlineAPI;
 using AirlineAPI.Models;
 using AirlineAPI.Services;
 using AirlineAPI.Verifications.Route;
+
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
