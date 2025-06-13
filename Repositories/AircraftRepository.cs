@@ -16,17 +16,23 @@ public class AircraftRepository : IAircraftRepository
 
     public IEnumerable<AircraftListDataView> GetAircrafts()
     {
-        return _context.Set<AircraftListDataView>()
-            .FromSqlRaw("EXEC Airline.dbo.ListAircrafts")
-            .ToList();
+
+        return SqlHelper.ExecStoredProcedureWithResult<AircraftListDataView>(
+            _context, 
+            "Airline.dbo.ListAircrafts"
+        );
     }
     
     public void Insert(AircraftCreateDTO createData)
     {
-       _context.Database.ExecuteSqlRaw("EXEC Airline.dbo.InsertAircraft @Model, @Capacity, @Range",
+
+        SqlHelper.ExecStoredProcedure(
+            _context, 
+            "Airline.dbo.InsertAircraft", 
             new SqlParameter("@Model", createData.Model),
             new SqlParameter("@Capacity", createData.Capacity),
             new SqlParameter("@Range", createData.Range)
         );
+
     }
 }
