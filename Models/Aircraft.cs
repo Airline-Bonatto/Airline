@@ -21,11 +21,11 @@ namespace AirlineAPI.Models
 
         public void Update(AircraftUpdateDTO updateData)
         {
-            if (updateData.Capacity != this.Capacity)
+            if(updateData.Capacity != this.Capacity)
             {
                 this.Capacity = updateData.Capacity;
             }
-            if (updateData.Range != this.Range)
+            if(updateData.Range != this.Range)
             {
                 this.Range = updateData.Range;
             }

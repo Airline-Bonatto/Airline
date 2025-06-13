@@ -15,7 +15,7 @@ namespace AirlineAPI.Services
             {
                 var aircraft = aircraftDal.GetById(createData.AircraftId);
 
-                foreach (var verification in _verifications)
+                foreach(var verification in _verifications)
                 {
                     verification.Verify(createData, aircraft);
                 }
@@ -31,7 +31,7 @@ namespace AirlineAPI.Services
                 aircraft.AddRoute(route);
                 aircraftDal.Update(aircraft);
             }
-            catch (Exception)
+            catch(Exception)
             {
                 throw;
             }

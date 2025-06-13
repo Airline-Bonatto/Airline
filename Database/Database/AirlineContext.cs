@@ -20,7 +20,7 @@ namespace Airline.Database
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            if (optionsBuilder.IsConfigured)
+            if(optionsBuilder.IsConfigured)
             {
                 return;
             }

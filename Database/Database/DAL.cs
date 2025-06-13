@@ -19,7 +19,7 @@ namespace Airline.DAL
             {
                 return context.Set<T>().ToList();
             }
-            catch (Exception e)
+            catch(Exception e)
             {
                 Console.WriteLine("Aircrafts list error!");
                 Console.WriteLine(e.Message);
@@ -33,7 +33,7 @@ namespace Airline.DAL
                 context.Set<T>().Add(model);
                 context.SaveChanges();
             }
-            catch (Exception e)
+            catch(Exception e)
             {
                 Console.WriteLine("Model register error!");
                 Console.WriteLine(e.Message);
@@ -49,7 +49,7 @@ namespace Airline.DAL
                 context.Set<T>().Update(model);
                 context.SaveChanges();
             }
-            catch (Exception e)
+            catch(Exception e)
             {
                 Console.WriteLine("Aircraft update error!");
                 Console.WriteLine(e.Message);
@@ -64,7 +64,7 @@ namespace Airline.DAL
                 context.Set<T>().Remove(model);
                 context.SaveChanges();
             }
-            catch (Exception e)
+            catch(Exception e)
             {
                 Console.WriteLine("Aircraft remove error!");
                 Console.WriteLine(e.Message);
@@ -77,13 +77,13 @@ namespace Airline.DAL
             try
             {
                 var entity = context.Set<T>().Find(id);
-                if (entity is null)
+                if(entity is null)
                 {
                     throw new EntityNotFoundException();
                 }
                 return entity;
             }
-            catch (Exception e)
+            catch(Exception e)
             {
                 Console.WriteLine("Aircrafts list error!");
                 Console.WriteLine(e.Message);

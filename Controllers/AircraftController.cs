@@ -42,7 +42,7 @@ namespace AirlineAPI.Controllers
         {
             var aircraft = dal.GetById(id);
 
-            if (aircraft == null)
+            if(aircraft == null)
             {
                 return Results.NotFound(new { Message = "Aircraft not found!" });
             }
@@ -55,7 +55,7 @@ namespace AirlineAPI.Controllers
         {
             var aircraft = dal.GetById(id);
 
-            if (aircraft == null)
+            if(aircraft == null)
             {
                 return Results.NotFound(new { Message = "Aircraft not found!" });
             }
@@ -72,7 +72,7 @@ namespace AirlineAPI.Controllers
         {
             var aircraft = dal.GetById(id);
 
-            if (aircraft == null)
+            if(aircraft == null)
             {
                 return Results.NotFound(new { Message = "Aircraft not found!" });
             }

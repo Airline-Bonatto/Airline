@@ -25,11 +25,11 @@ namespace AirlineAPI.Controllers
                 routeCreationService.CreateRoute(aircraftDal, createData);
 
             }
-            catch (EntityNotFoundException)
+            catch(EntityNotFoundException)
             {
                 return Results.BadRequest(new { Message = "Aircraft not found!" });
             }
-            catch (AircraftRangeException e)
+            catch(AircraftRangeException e)
             {
                 return Results.BadRequest(new { e.Message });
             }
