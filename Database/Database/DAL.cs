@@ -76,7 +76,7 @@ namespace Airline.DAL
             try
             {
                 var entity = context.Set<T>().Find(id);
-                if(entity is null)
+                if (entity is null)
                 {
                     throw new EntityNotFoundException();
                 }

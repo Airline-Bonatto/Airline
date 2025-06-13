@@ -23,15 +23,15 @@ namespace AirlineAPI.Controllers
             _aircraftRepository.Insert(createData);
 
             return Results.Created();
-            
+
         }
 
         [HttpGet("list")]
         public IResult List(
-            [FromQuery] int page = 1, 
+            [FromQuery] int page = 1,
             [FromQuery] int perPage = 10)
         {
-            return Results.Ok( _aircraftRepository.GetAircrafts());
+            return Results.Ok(_aircraftRepository.GetAircrafts());
         }
 
 
@@ -40,9 +40,9 @@ namespace AirlineAPI.Controllers
         {
             var aircraft = dal.GetById(id);
 
-            if(aircraft == null)
+            if (aircraft == null)
             {
-                return Results.NotFound(new{Message = "Aircraft not found!"});
+                return Results.NotFound(new { Message = "Aircraft not found!" });
             }
 
             return Results.Ok(new AircraftDetailView(aircraft));
@@ -53,9 +53,9 @@ namespace AirlineAPI.Controllers
         {
             var aircraft = dal.GetById(id);
 
-            if(aircraft == null)
+            if (aircraft == null)
             {
-                return Results.NotFound(new{Message = "Aircraft not found!"});
+                return Results.NotFound(new { Message = "Aircraft not found!" });
             }
 
             aircraft.Update(updateData);
@@ -66,13 +66,13 @@ namespace AirlineAPI.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IResult Remove(DAL<Aircraft> dal,int id)
+        public IResult Remove(DAL<Aircraft> dal, int id)
         {
             var aircraft = dal.GetById(id);
 
-            if(aircraft == null)
+            if (aircraft == null)
             {
-                return Results.NotFound(new{Message = "Aircraft not found!"});
+                return Results.NotFound(new { Message = "Aircraft not found!" });
             }
             dal.Remove(aircraft);
 

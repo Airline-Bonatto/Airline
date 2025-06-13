@@ -10,7 +10,8 @@ namespace AirlineAPI.Services
     {
         public void CreateRoute(DAL<Aircraft> aircraftDal, RouteCreateDTO createData)
         {
-             try{
+            try
+            {
                 var aircraft = aircraftDal.GetById(createData.AircraftId);
 
                 foreach (var verification in _verifications)
@@ -20,15 +21,16 @@ namespace AirlineAPI.Services
 
                 var route = new Models.Route
                 {
-                    Aircraft = aircraft, 
-                    From = createData.From, 
-                    To = createData.To, 
+                    Aircraft = aircraft,
+                    From = createData.From,
+                    To = createData.To,
                     Distance = createData.Distance
                 };
 
                 aircraft.AddRoute(route);
                 aircraftDal.Update(aircraft);
-            }catch (Exception)
+            }
+            catch (Exception)
             {
                 throw;
             }

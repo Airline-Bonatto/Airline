@@ -17,10 +17,11 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 
-builder.Services.AddDbContext<AirlineContext>((options)=>{
-        options
-        .UseSqlServer(builder.Configuration["ConnectionStrings:AirlineDB"])
-        .UseLazyLoadingProxies();
+builder.Services.AddDbContext<AirlineContext>((options) =>
+{
+    options
+    .UseSqlServer(builder.Configuration["ConnectionStrings:AirlineDB"])
+    .UseLazyLoadingProxies();
 });
 builder.Services.AddTransient<DAL<Aircraft>>();
 

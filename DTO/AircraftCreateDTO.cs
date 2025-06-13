@@ -5,11 +5,11 @@ namespace AirlineAPI.DTO
 {
     public record AircraftCreateDTO(
         [Required]
-        string Model, 
+        string Model,
 
         [Required]
-        int Capacity, 
-        
+        int Capacity,
+
         [Required]
         double Range
     );

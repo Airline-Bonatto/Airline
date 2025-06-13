@@ -18,17 +18,17 @@ public class AircraftRepository : IAircraftRepository
     {
 
         return SqlHelper.ExecStoredProcedureWithResult<AircraftListDataView>(
-            _context, 
+            _context,
             "Airline.dbo.ListAircrafts"
         );
     }
-    
+
     public void Insert(AircraftCreateDTO createData)
     {
 
         SqlHelper.ExecStoredProcedure(
-            _context, 
-            "Airline.dbo.InsertAircraft", 
+            _context,
+            "Airline.dbo.InsertAircraft",
             new SqlParameter("@Model", createData.Model),
             new SqlParameter("@Capacity", createData.Capacity),
             new SqlParameter("@Range", createData.Range)

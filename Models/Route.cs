@@ -7,8 +7,8 @@ namespace AirlineAPI.Models
         public required virtual Aircraft Aircraft { get; set; }
         public required string From { get; set; }
         public required string To { get; set; }
-        public DateTime Departure{ get; set; }
-        public DateTime Arrival{ get; set; }
+        public DateTime Departure { get; set; }
+        public DateTime Arrival { get; set; }
         public double Distance { get; set; }
     }
 }

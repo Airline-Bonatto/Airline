@@ -9,7 +9,7 @@ namespace AirlineAPI.Controllers
 {
     [ApiController]
     [Route("route")]
-    public class RouteController: ControllerBase
+    public class RouteController : ControllerBase
     {
         [HttpPost("create")]
         public IResult Create(
@@ -17,21 +17,23 @@ namespace AirlineAPI.Controllers
             IRouteCreationService routeCreationService,
             [FromBody] RouteCreateDTO createData)
         {
-            try{
+            try
+            {
 
                 routeCreationService.CreateRoute(aircraftDal, createData);
-               
-            }catch (EntityNotFoundException)
-            {
-                return Results.BadRequest(new{Message = "Aircraft not found!"});
+
             }
-            catch(AircraftRangeException e)
+            catch (EntityNotFoundException)
             {
-                return Results.BadRequest(new{e.Message});
+                return Results.BadRequest(new { Message = "Aircraft not found!" });
+            }
+            catch (AircraftRangeException e)
+            {
+                return Results.BadRequest(new { e.Message });
             }
 
             return Results.Created();
-            
+
         }
     }
 }

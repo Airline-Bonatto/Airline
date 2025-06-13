@@ -7,7 +7,7 @@ namespace Airline.Database
     public class AirlineContext : DbContext
     {
 
-        public DbSet<Aircraft> Aircraft {  get; set; }
+        public DbSet<Aircraft> Aircraft { get; set; }
         public DbSet<AirlineAPI.Models.Route> Route { get; set; }
         public DbSet<AircraftListDataView> AircraftListDataView { get; set; }
 
