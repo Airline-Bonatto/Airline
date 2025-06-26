@@ -8,5 +8,6 @@ namespace AirlineAPI.Dataviews
         public string? Model { get; } = aircraft.Model;
         public int Capacity { get; } = aircraft.Capacity;
         public double Range { get; } = aircraft.Range;
+        public double AverageFuelConsumption { get; } = aircraft.AverageFuelConsumption;
     }
 }
