@@ -33,21 +33,21 @@ namespace AirlineAPI.Controllers
             [FromQuery] int page = 1,
             [FromQuery] int perPage = 10)
         {
-            return Results.Ok(_aircraftRepository.GetAircrafts());
+            return Results.Ok(_aircraftRepository.ListAircrafts());
         }
 
 
-        [HttpGet("{id}")]
-        public IResult Detail(DAL<Aircraft> dal, int id)
+        [HttpGet("{aircraftId}")]
+        public IResult Detail(int aircraftId)
         {
-            var aircraft = dal.GetById(id);
+            AircraftDetailView? aircraft = _aircraftRepository.GetAircraft(aircraftId);
 
             if(aircraft == null)
             {
                 return Results.NotFound(new { Message = "Aircraft not found!" });
             }
 
-            return Results.Ok(new AircraftDetailView(aircraft));
+            return Results.Ok(_aircraftRepository.GetAircraft(aircraftId));
         }
 
         [HttpPatch("update/{id}")]

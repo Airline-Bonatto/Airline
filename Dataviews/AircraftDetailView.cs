@@ -1,13 +1,12 @@
-using AirlineAPI.Models;
 
 namespace AirlineAPI.Dataviews
 {
-    public class AircraftDetailView(Aircraft aircraft)
+    public class AircraftDetailView
     {
-        public int AircraftID { get; } = aircraft.AircraftID;
-        public string? Model { get; } = aircraft.Model;
-        public int Capacity { get; } = aircraft.Capacity;
-        public double Range { get; } = aircraft.Range;
-        public double AverageFuelConsumption { get; } = aircraft.AverageFuelConsumption;
+        public int AircraftID { get; set; }
+        public string? Model { get; set; }
+        public int Capacity { get; set; }
+        public double Range { get; set; }
+        public double AverageFuelConsumption { get; set; }
     }
 }

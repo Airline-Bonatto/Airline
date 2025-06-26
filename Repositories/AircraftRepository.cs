@@ -1,5 +1,6 @@
 ﻿using Airline.Database;
 
+using AirlineAPI.Dataviews;
 using AirlineAPI.DTO;
 
 using Microsoft.Data.SqlClient;
@@ -16,7 +17,17 @@ public class AircraftRepository : IAircraftRepository
         _context = context;
     }
 
-    public IEnumerable<AircraftListDataView> GetAircrafts()
+
+    public AircraftDetailView? GetAircraft(int aircraftId)
+    {
+        return SqlHelper.ExecStoredProcedureWithResult<AircraftDetailView>(
+            _context,
+            "Airline.dbo.GetAircraft",
+            new SqlParameter("@aircraftId", aircraftId)
+        ).FirstOrDefault();
+    }
+
+    public IEnumerable<AircraftListDataView> ListAircrafts()
     {
 
         return SqlHelper.ExecStoredProcedureWithResult<AircraftListDataView>(
