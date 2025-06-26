@@ -31,9 +31,10 @@ public class AircraftRepository : IAircraftRepository
         SqlHelper.ExecStoredProcedure(
             _context,
             "Airline.dbo.InsertAircraft",
-            new SqlParameter("@Model", createData.Model),
-            new SqlParameter("@Capacity", createData.Capacity),
-            new SqlParameter("@Range", createData.Range)
+            new SqlParameter("@model", createData.Model),
+            new SqlParameter("@capacity", createData.Capacity),
+            new SqlParameter("@range", createData.Range),
+            new SqlParameter("@avaregeFuelConsumption", createData.AvaregeFuelConsumption)
         );
 
     }

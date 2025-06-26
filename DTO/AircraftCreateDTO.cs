@@ -11,6 +11,9 @@ namespace AirlineAPI.DTO
         int Capacity,
 
         [Required]
-        double Range
+        double Range,
+
+        [Required]
+        double AvaregeFuelConsumption
     );
 }
