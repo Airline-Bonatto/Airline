@@ -1,4 +1,6 @@
-﻿using Airline.Database;
+﻿using System.Data;
+
+using Airline.Database;
 
 using AirlineAPI.Dataviews;
 using AirlineAPI.DTO;
@@ -38,15 +40,14 @@ public class AircraftRepository : IAircraftRepository
 
     public void Insert(AircraftCreateDTO createData)
     {
-
         SqlHelper.ExecStoredProcedure(
-            _context,
-            "Airline.dbo.InsertAircraft",
-            new SqlParameter("@model", createData.Model),
-            new SqlParameter("@capacity", createData.Capacity),
-            new SqlParameter("@range", createData.Range),
-            new SqlParameter("@avaregeFuelConsumption", createData.AvaregeFuelConsumption)
-        );
+        _context,
+        "Airline.dbo.MergeAircraft",
+        new SqlParameter("@model", createData.Model),
+        new SqlParameter("@capacity", createData.Capacity),
+        new SqlParameter("@range", createData.Range),
+        new SqlParameter("@avaregeFuelConsumption", createData.AvaregeFuelConsumption)
+    );
 
     }
 }

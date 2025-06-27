@@ -1,4 +1,6 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using System.Data;
+
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 
 namespace AirlineAPI;
@@ -23,9 +25,18 @@ public class SqlHelper
         params SqlParameter[] parameters
     )
     {
-        var parameterNames = string.Join(", ", parameters.Select(p => p.ParameterName));
-        var sql = $"EXEC {procedureName} {parameterNames}";
-        context.Database.ExecuteSqlRaw(sql, parameters);
+
+        using var connection = context.Database.GetDbConnection();
+        connection.Open();
+
+        using var command = connection.CreateCommand();
+
+        command.CommandText = procedureName;
+        command.CommandType = CommandType.StoredProcedure;
+
+        parameters.ToList().ForEach(p => command.Parameters.Add(p));
+
+        command.ExecuteNonQuery();
     }
 
 
