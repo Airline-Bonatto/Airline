@@ -50,4 +50,16 @@ public class AircraftRepository : IAircraftRepository
     );
 
     }
+
+    public void Update(AircraftUpdateDTO updateData)
+    {
+        SqlHelper.ExecStoredProcedure(
+            _context,
+            "Airline.dbo.MergeAircraft",
+            new SqlParameter("@aircraftId", updateData.AircraftId),
+            new SqlParameter("@capacity", updateData.Capacity),
+            new SqlParameter("@range", updateData.Range),
+            new SqlParameter("@avaregeFuelConsumption", updateData.AvaregeFuelConsumption)
+        );
+    }
 }

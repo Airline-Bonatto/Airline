@@ -51,19 +51,11 @@ namespace AirlineAPI.Controllers
         }
 
         [HttpPatch("update/{id}")]
-        public IResult Update(DAL<Aircraft> dal, [FromBody] AircraftUpdateDTO updateData, int id)
+        public IResult Update([FromBody] AircraftUpdateRequestBody updateData, int id)
         {
-            var aircraft = dal.GetById(id);
 
-            if(aircraft == null)
-            {
-                return Results.NotFound(new { Message = "Aircraft not found!" });
-            }
-
-            aircraft.Update(updateData);
-            dal.Update(aircraft);
-
-
+            AircraftUpdateDTO updateDto = new(updateData, id);
+            _aircraftRepository.Update(updateDto);
             return Results.Ok();
         }
 

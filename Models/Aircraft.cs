@@ -14,22 +14,6 @@ namespace AirlineAPI.Models
 
         public Aircraft() { }
 
-        public void Update(AircraftUpdateDTO updateData)
-        {
-            if(updateData.Capacity != this.Capacity)
-            {
-                this.Capacity = updateData.Capacity;
-            }
-            if(updateData.Range != this.Range)
-            {
-                this.Range = updateData.Range;
-            }
-            if(updateData.AverageFuelConsumption != this.AverageFuelConsumption)
-            {
-                this.AverageFuelConsumption = updateData.AverageFuelConsumption;
-            }
-        }
-
         public void AddRoute(Route route)
         {
             this.Routes.Add(route);
