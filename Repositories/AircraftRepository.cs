@@ -59,7 +59,8 @@ public class AircraftRepository : IAircraftRepository
             new SqlParameter("@aircraftId", updateData.AircraftId),
             new SqlParameter("@capacity", updateData.Capacity),
             new SqlParameter("@range", updateData.Range),
-            new SqlParameter("@avaregeFuelConsumption", updateData.AvaregeFuelConsumption)
+            new SqlParameter("@avaregeFuelConsumption", updateData.AvaregeFuelConsumption),
+            new SqlParameter("@finalDate", updateData.FinalDate)
         );
     }
 }

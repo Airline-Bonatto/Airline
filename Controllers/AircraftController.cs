@@ -10,14 +10,10 @@ namespace AirlineAPI.Controllers
 {
     [ApiController]
     [Route("aircraft")]
-    public class AircraftController : ControllerBase
+    public class AircraftController(IAircraftRepository aircraftRepository) : ControllerBase
     {
 
-        private readonly IAircraftRepository _aircraftRepository;
-        public AircraftController(IAircraftRepository aircraftRepository)
-        {
-            _aircraftRepository = aircraftRepository;
-        }
+        private readonly IAircraftRepository _aircraftRepository = aircraftRepository;
 
         [HttpPost("create")]
         public IResult Create([FromBody] AircraftCreateDTO createData)
@@ -59,18 +55,12 @@ namespace AirlineAPI.Controllers
             return Results.Ok();
         }
 
-        [HttpDelete("{id}")]
-        public IResult Remove(DAL<Aircraft> dal, int id)
+        [HttpDelete("{aircraftId}")]
+        public IResult Remove(int aircraftId)
         {
-            var aircraft = dal.GetById(id);
-
-            if(aircraft == null)
-            {
-                return Results.NotFound(new { Message = "Aircraft not found!" });
-            }
-            dal.Remove(aircraft);
-
-            return Results.NoContent();
+            AircraftUpdateDTO updateDto = new(aircraftId, null, null, null, DateTime.Now);
+            _aircraftRepository.Update(updateDto);
+            return Results.Ok();
         }
     }
 }
