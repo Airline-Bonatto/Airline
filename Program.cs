@@ -5,6 +5,8 @@ using Airline.Database;
 
 using AirlineAPI;
 using AirlineAPI.Models;
+using AirlineAPI.Services.Implementations;
+using AirlineAPI.Services.Interfaces;
 
 using Microsoft.EntityFrameworkCore;
 
@@ -31,6 +33,7 @@ builder.Services.Configure<Microsoft.AspNetCore.Http.Json.JsonOptions>(options =
 
 builder.Services.AddScoped<IAircraftRepository, AircraftRepository>();
 builder.Services.AddScoped<IRouteRepository, RouteRepository>();
+builder.Services.AddScoped<ICalculateRoutePriceService, CalculateRoutePriceService>();
 
 var app = builder.Build();
 // Configure the HTTP request pipeline.

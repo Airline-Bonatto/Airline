@@ -1,6 +1,8 @@
 
 using AirlineAPI.DTO;
 using AirlineAPI.Models;
+using AirlineAPI.RequestBodies;
+using AirlineAPI.Services.Interfaces;
 
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,10 +14,14 @@ namespace AirlineAPI.Controllers
     {
         [HttpPost("create")]
         public async Task<IResult> Create(
-            [FromBody] RouteMergeDTO createData,
-            [FromServices] IRouteRepository routeRepository)
+            [FromBody] RouteInsertRequestBody createData,
+            IRouteRepository routeRepository,
+            ICalculateRoutePriceService calculateRoutePriceService)
         {
-            await routeRepository.Insert(createData);
+            double price = calculateRoutePriceService.CalculateRoutePrice(createData);
+            RouteMergeDTO mergeData = new(createData, price);
+            await routeRepository.Insert(mergeData);
+
             return Results.Created();
         }
     }
