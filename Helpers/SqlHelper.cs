@@ -40,4 +40,24 @@ public class SqlHelper
     }
 
 
+    public static async Task ExecStoredProcedureAsync(
+        DbContext context,
+        string procedureName,
+        params SqlParameter[] parameters
+    )
+    {
+
+        using var connection = context.Database.GetDbConnection();
+        connection.Open();
+
+        using var command = connection.CreateCommand();
+
+        command.CommandText = procedureName;
+        command.CommandType = CommandType.StoredProcedure;
+
+        parameters.ToList().ForEach(p => command.Parameters.Add(p));
+
+        await command.ExecuteNonQueryAsync();
+    }
+
 }

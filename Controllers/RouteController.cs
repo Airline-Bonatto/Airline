@@ -1,9 +1,6 @@
-using Airline.DAL;
 
 using AirlineAPI.DTO;
-using AirlineAPI.Exceptions;
 using AirlineAPI.Models;
-using AirlineAPI.Services;
 
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,28 +11,12 @@ namespace AirlineAPI.Controllers
     public class RouteController : ControllerBase
     {
         [HttpPost("create")]
-        public IResult Create(
-            DAL<Aircraft> aircraftDal,
-            IRouteCreationService routeCreationService,
-            [FromBody] RouteCreateDTO createData)
+        public async Task<IResult> Create(
+            [FromBody] RouteMergeDTO createData,
+            [FromServices] IRouteRepository routeRepository)
         {
-            try
-            {
-
-                routeCreationService.CreateRoute(aircraftDal, createData);
-
-            }
-            catch(EntityNotFoundException)
-            {
-                return Results.BadRequest(new { Message = "Aircraft not found!" });
-            }
-            catch(AircraftRangeException e)
-            {
-                return Results.BadRequest(new { e.Message });
-            }
-
+            await routeRepository.Insert(createData);
             return Results.Created();
-
         }
     }
 }

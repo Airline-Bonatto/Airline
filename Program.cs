@@ -5,8 +5,6 @@ using Airline.Database;
 
 using AirlineAPI;
 using AirlineAPI.Models;
-using AirlineAPI.Services;
-using AirlineAPI.Verifications.Route;
 
 using Microsoft.EntityFrameworkCore;
 
@@ -31,9 +29,8 @@ builder.Services.AddTransient<DAL<Aircraft>>();
 builder.Services.Configure<Microsoft.AspNetCore.Http.Json.JsonOptions>(options => options.SerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 
 
-builder.Services.AddScoped<ICreateRouteVerification, RouteDistanceVerification>();
-builder.Services.AddScoped<IRouteCreationService, RouteCreationService>();
 builder.Services.AddScoped<IAircraftRepository, AircraftRepository>();
+builder.Services.AddScoped<IRouteRepository, RouteRepository>();
 
 var app = builder.Build();
 // Configure the HTTP request pipeline.

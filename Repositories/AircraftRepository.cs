@@ -1,24 +1,16 @@
-﻿using System.Data;
-
+﻿
 using Airline.Database;
 
 using AirlineAPI.Dataviews;
 using AirlineAPI.DTO;
 
 using Microsoft.Data.SqlClient;
-using Microsoft.EntityFrameworkCore;
 
 namespace AirlineAPI;
 
-public class AircraftRepository : IAircraftRepository
+public class AircraftRepository(AirlineContext context) : IAircraftRepository
 {
-    private readonly AirlineContext _context;
-
-    public AircraftRepository(AirlineContext context)
-    {
-        _context = context;
-    }
-
+    private readonly AirlineContext _context = context;
 
     public AircraftDetailView? GetAircraft(int aircraftId)
     {
