@@ -6,30 +6,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Airline.Database
 {
-    public class AirlineContext : DbContext
+    public class AirlineContext(DbContextOptions options) : DbContext(options)
     {
 
         public DbSet<Aircraft> Aircraft { get; set; }
         public DbSet<AirlineAPI.Models.Route> Route { get; set; }
         public DbSet<AircraftListDataView> AircraftListDataView { get; set; }
         public DbSet<AircraftDetailView> AircraftDataView { get; set; }
-
-        private string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=Airline;Integrated Security=True;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
-        public AirlineContext(DbContextOptions options) : base(options)
-        {
-
-        }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if(optionsBuilder.IsConfigured)
-            {
-                return;
-            }
-            optionsBuilder
-                .UseSqlServer(connectionString)
-                .UseLazyLoadingProxies();
-        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
