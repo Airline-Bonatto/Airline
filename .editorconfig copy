@@ -1,8 +1,0 @@
-root = true
-
-[*.cs]
-# Usa namespace em formato file-scoped
-csharp_style_namespace_declarations = file_scoped:suggestion
-
-
-
