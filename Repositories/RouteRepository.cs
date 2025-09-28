@@ -1,8 +1,14 @@
 ﻿using Airline.Database;
+using Airline.DTO;
 
 using AirlineAPI.DTO;
 
 using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
+
+using Route = AirlineAPI.Models.Route;
+
+
 
 namespace AirlineAPI;
 
@@ -22,5 +28,27 @@ public class RouteRepository(AirlineContext context) : IRouteRepository
             new SqlParameter("@departure", createData.Departure),
             new SqlParameter("@price", createData.Price)
         );
+    }
+
+    public async Task<List<Route>> List(RouteListFiltersDTO filters)
+    {
+        IQueryable<Route> query = _context.Route.AsQueryable();
+
+        if(filters.AircraftId.HasValue)
+        {
+            query = query.Where(r => r.Aircraft.AircraftID == filters.AircraftId.Value);
+        }
+
+        if(!string.IsNullOrEmpty(filters.From))
+        {
+            query = query.Where(r => r.From == filters.From);
+        }
+
+        if(!string.IsNullOrEmpty(filters.To))
+        {
+            query = query.Where(r => r.To == filters.To);
+        }
+
+        return await query.ToListAsync();
     }
 }

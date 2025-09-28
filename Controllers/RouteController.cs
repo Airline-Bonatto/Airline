@@ -1,28 +1,41 @@
 
+using Airline.DTO;
+
 using AirlineAPI.DTO;
-using AirlineAPI.Models;
 using AirlineAPI.RequestBodies;
 using AirlineAPI.Services.Interfaces;
 
 using Microsoft.AspNetCore.Mvc;
 
-namespace AirlineAPI.Controllers
-{
-    [ApiController]
-    [Route("route")]
-    public class RouteController : ControllerBase
-    {
-        [HttpPost("create")]
-        public async Task<IResult> Create(
-            [FromBody] RouteInsertRequestBody createData,
-            IRouteRepository routeRepository,
-            ICalculateRoutePriceService calculateRoutePriceService)
-        {
-            double price = calculateRoutePriceService.CalculateRoutePrice(createData);
-            RouteMergeDTO mergeData = new(createData, price);
-            await routeRepository.Insert(mergeData);
+using Route = AirlineAPI.Models.Route;
 
-            return Results.Created();
-        }
+namespace AirlineAPI.Controllers;
+
+[ApiController]
+[Route("route")]
+public class RouteController(IRouteRepository routeRepository) : ControllerBase
+{
+
+    private readonly IRouteRepository _routeRepository = routeRepository;
+    [HttpPost("create")]
+    public async Task<IResult> Create(
+        [FromBody] RouteInsertRequestBody createData,
+        ICalculateRoutePriceService calculateRoutePriceService)
+    {
+        double price = calculateRoutePriceService.CalculateRoutePrice(createData);
+        RouteMergeDTO mergeData = new(createData, price);
+        await _routeRepository.Insert(mergeData);
+
+        return Results.Created();
+    }
+
+
+    [HttpGet("list")]
+    public async Task<IResult> List([FromQuery] RouteListFiltersDTO filters)
+    {
+        List<Route> routes = await _routeRepository.List(filters);
+        return Results.Ok(routes);
     }
 }
+
+
