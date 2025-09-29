@@ -17,7 +17,7 @@ namespace AirlineAPI.Airline.api.Migrations
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
-#pragma warning disable 612, 618
+
             modelBuilder
                 .HasAnnotation("ProductVersion", "8.0.10")
                 .HasAnnotation("Proxies:ChangeTracking", false)
@@ -27,7 +27,7 @@ namespace AirlineAPI.Airline.api.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("AirlineAPIV2.Models.Aircraft", b =>
+            modelBuilder.Entity("AirlineAPI.Airline.api.Models.Aircraft", b =>
                 {
                     b.Property<int>("AircraftID")
                         .ValueGeneratedOnAdd()
@@ -50,7 +50,7 @@ namespace AirlineAPI.Airline.api.Migrations
                     b.ToTable("Aircraft");
                 });
 
-            modelBuilder.Entity("AirlineAPIV2.Models.Route", b =>
+            modelBuilder.Entity("AirlineAPI.Airline.api.Models.Route", b =>
                 {
                     b.Property<int>("RouteID")
                         .ValueGeneratedOnAdd()
@@ -79,9 +79,9 @@ namespace AirlineAPI.Airline.api.Migrations
                     b.ToTable("Route");
                 });
 
-            modelBuilder.Entity("AirlineAPIV2.Models.Route", b =>
+            modelBuilder.Entity("AirlineAPI.Airline.api.Models.Route", b =>
                 {
-                    b.HasOne("AirlineAPIV2.Models.Aircraft", "Aircraft")
+                    b.HasOne("AirlineAPI.Airline.api.Models.Aircraft", "Aircraft")
                         .WithMany("Routes")
                         .HasForeignKey("AircraftID")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -90,11 +90,11 @@ namespace AirlineAPI.Airline.api.Migrations
                     b.Navigation("Aircraft");
                 });
 
-            modelBuilder.Entity("AirlineAPIV2.Models.Aircraft", b =>
+            modelBuilder.Entity("AirlineAPI.Airline.api.Models.Aircraft", b =>
                 {
                     b.Navigation("Routes");
                 });
-#pragma warning restore 612, 618
+
         }
     }
 }
