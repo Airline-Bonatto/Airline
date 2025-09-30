@@ -1,4 +1,4 @@
-﻿namespace AirlineAPI.Airline.api.Dataviews;
+﻿namespace Airline.Dataviews;
 
 public class AircraftListDataView
 {

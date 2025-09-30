@@ -1,4 +1,4 @@
-﻿namespace AirlineAPI.Airline.api.RequestBodies;
+﻿namespace Airline.RequestBodies;
 
 public record AircraftUpdateRequestBody(
     int Capacity,

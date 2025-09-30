@@ -1,6 +1,6 @@
-using AirlineAPI.Airline.api.RequestBodies;
+using Airline.RequestBodies;
 
-namespace AirlineAPI.Airline.api.DTO;
+namespace Airline.DTO;
 
 public record RouteMergeDTO(
     int AircraftId,

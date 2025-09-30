@@ -1,15 +1,15 @@
-﻿using AirlineAPI.Airline.api.Database;
-using AirlineAPI.Airline.api.DTO;
-using AirlineAPI.Airline.api.Helpers;
-using AirlineAPI.Airline.api.Repositories.Interfaces;
+﻿using Airline.Database;
+using Airline.DTO;
+using Airline.Helpers;
+using Airline.Repositories.Interfaces;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 
-using Route = AirlineAPI.Airline.api.Models.Route;
+using Route = Airline.Models.Route;
 
 
 
-namespace AirlineAPI.Airline.api.Repositories.Implementations;
+namespace Airline.Repositories.Implementations;
 
 public class RouteRepository(AirlineContext context) : IRouteRepository
 {

@@ -2,11 +2,11 @@
 
 using System.Text.Json.Serialization;
 
-using AirlineAPI.Airline.api.Database;
-using AirlineAPI.Airline.api.Repositories.Implementations;
-using AirlineAPI.Airline.api.Repositories.Interfaces;
-using AirlineAPI.Airline.api.Services.Implementations;
-using AirlineAPI.Airline.api.Services.Interfaces;
+using Airline.Database;
+using Airline.Repositories.Implementations;
+using Airline.Repositories.Interfaces;
+using Airline.Services.Implementations;
+using Airline.Services.Interfaces;
 
 using Microsoft.EntityFrameworkCore;
 

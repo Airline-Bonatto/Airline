@@ -1,4 +1,4 @@
-namespace AirlineAPI.Airline.api.DTO;
+namespace Airline.DTO;
 
 using Microsoft.AspNetCore.Mvc;
 

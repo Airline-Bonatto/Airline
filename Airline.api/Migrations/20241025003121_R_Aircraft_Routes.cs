@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace AirlineAPI.Airline.api.Migrations;
+namespace Airline.Migrations;
 
 /// <inheritdoc />
 public partial class R_Aircraft_Routes : Migration

@@ -1,6 +1,7 @@
-﻿using AirlineAPI.Airline.api.RequestBodies;
+﻿
+using Airline.RequestBodies;
 
-namespace AirlineAPI.Airline.api.Services.Interfaces;
+namespace Airline.Services.Interfaces;
 
 public interface ICalculateRoutePriceService
 {

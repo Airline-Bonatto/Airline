@@ -1,5 +1,5 @@
 ﻿
-namespace AirlineAPI.Airline.api.Models;
+namespace Airline.Models;
 
 public class Route
 {

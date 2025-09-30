@@ -1,12 +1,12 @@
 
-using AirlineAPI.Airline.api.DTO;
-using AirlineAPI.Airline.api.Repositories.Interfaces;
-using AirlineAPI.Airline.api.RequestBodies;
-using AirlineAPI.Airline.api.Services.Interfaces;
+using Airline.DTO;
+using Airline.Repositories.Interfaces;
+using Airline.RequestBodies;
+using Airline.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using Route = AirlineAPI.Airline.api.Models.Route;
+using Route = Airline.Models.Route;
 
-namespace AirlineAPI.Airline.api.Controllers;
+namespace Airline.Controllers;
 
 [ApiController]
 [Route("route")]

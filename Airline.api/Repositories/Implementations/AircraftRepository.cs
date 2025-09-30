@@ -1,13 +1,13 @@
 ﻿
-using AirlineAPI.Airline.api.Database;
-using AirlineAPI.Airline.api.Dataviews;
-using AirlineAPI.Airline.api.DTO;
-using AirlineAPI.Airline.api.Helpers;
-using AirlineAPI.Airline.api.Repositories.Interfaces;
+using Airline.Database;
+using Airline.Dataviews;
+using Airline.DTO;
+using Airline.Helpers;
+using Airline.Repositories.Interfaces;
 
 using Microsoft.Data.SqlClient;
 
-namespace AirlineAPI.Airline.api.Repositories.Implementations;
+namespace Airline.Repositories.Implementations;
 
 public class AircraftRepository(AirlineContext context) : IAircraftRepository
 {

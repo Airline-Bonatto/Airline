@@ -1,7 +1,7 @@
 
 using System.ComponentModel.DataAnnotations;
 
-namespace AirlineAPI.Airline.api.DTO;
+namespace Airline.DTO;
 
 public record AircraftCreateDTO(
     [Required]

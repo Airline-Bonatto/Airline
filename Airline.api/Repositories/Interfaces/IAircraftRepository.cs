@@ -1,8 +1,8 @@
 ﻿
-using AirlineAPI.Airline.api.Dataviews;
-using AirlineAPI.Airline.api.DTO;
+using Airline.Dataviews;
+using Airline.DTO;
 
-namespace AirlineAPI.Airline.api.Repositories.Interfaces;
+namespace Airline.Repositories.Interfaces;
 
 public interface IAircraftRepository
 {

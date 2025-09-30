@@ -2,7 +2,7 @@
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 
-namespace AirlineAPI.Airline.api.Helpers;
+namespace Airline.Helpers;
 
 public class SqlHelper
 {

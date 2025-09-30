@@ -1,9 +1,9 @@
-﻿using AirlineAPI.Airline.api.Dataviews;
-using AirlineAPI.Airline.api.Repositories.Interfaces;
-using AirlineAPI.Airline.api.RequestBodies;
-using AirlineAPI.Airline.api.Services.Interfaces;
+﻿using Airline.Dataviews;
+using Airline.Repositories.Interfaces;
+using Airline.RequestBodies;
+using Airline.Services.Interfaces;
 
-namespace AirlineAPI.Airline.api.Services.Implementations;
+namespace Airline.Services.Implementations;
 
 public class CalculateRoutePriceService(IAircraftRepository aircraftRepository) : ICalculateRoutePriceService
 {

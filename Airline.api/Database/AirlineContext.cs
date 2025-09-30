@@ -1,10 +1,10 @@
-﻿using AirlineAPI.Airline.api.Dataviews;
-using AirlineAPI.Airline.api.Models;
+﻿using Airline.Dataviews;
+using Airline.Models;
 
 using Microsoft.EntityFrameworkCore;
-using Route = AirlineAPI.Airline.api.Models.Route;
+using Route = Airline.Models.Route;
 
-namespace AirlineAPI.Airline.api.Database;
+namespace Airline.Database;
 
 public class AirlineContext(DbContextOptions<AirlineContext> options) : DbContext(options)
 {

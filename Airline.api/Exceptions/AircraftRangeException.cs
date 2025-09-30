@@ -1,5 +1,5 @@
 
-namespace AirlineAPI.Airline.api.Exceptions;
+namespace Airline.Exceptions;
 
 public class AircraftRangeException : Exception
 {

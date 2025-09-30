@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace AirlineAPI.Airline.api.Migrations;
+namespace Airline.Migrations;
 
 /// <inheritdoc />
 public partial class UT_Routes_Add_Departure_Arrival : Migration
