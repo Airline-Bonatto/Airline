@@ -1,7 +1,12 @@
-﻿namespace Airline.Models;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Airline.Models;
 
 public class Aircraft
 {
+    [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int AircraftID { get; set; }
     public virtual ICollection<Route> Routes { get; set; } = [];
     public string Model { get; set; } = string.Empty;
@@ -13,7 +18,7 @@ public class Aircraft
 
     public void AddRoute(Route route)
     {
-        this.Routes.Add(route);
+        Routes.Add(route);
     }
 
 }

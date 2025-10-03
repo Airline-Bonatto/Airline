@@ -1,4 +1,3 @@
-using Airline.Dataviews;
 using Airline.DTO;
 using Airline.Models;
 using Airline.Repositories.Interfaces;
@@ -36,7 +35,7 @@ public class AircraftController(IAircraftRepository aircraftRepository) : Contro
     [HttpGet("{aircraftId}")]
     public IResult Detail(int aircraftId)
     {
-        AircraftDetailView? aircraft = _aircraftRepository.GetAircraft(aircraftId);
+        Aircraft? aircraft = _aircraftRepository.GetAircraft(aircraftId);
 
         if(aircraft == null)
         {

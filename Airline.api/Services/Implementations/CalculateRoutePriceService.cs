@@ -1,4 +1,4 @@
-﻿using Airline.Dataviews;
+﻿using Airline.Models;
 using Airline.Repositories.Interfaces;
 using Airline.RequestBodies;
 using Airline.Services.Interfaces;
@@ -12,7 +12,7 @@ public class CalculateRoutePriceService(IAircraftRepository aircraftRepository) 
     public double CalculateRoutePrice(RouteInsertRequestBody routeData)
     {
 
-        AircraftDetailView aircraft = _aircraftRepository.GetAircraft(routeData.AircraftId) ?? throw new ArgumentException("Aircraft not found!");
+        Aircraft aircraft = _aircraftRepository.GetAircraft(routeData.AircraftId) ?? throw new ArgumentException("Aircraft not found!");
 
         double price = aircraft.AverageFuelConsumption * routeData.Distance * 3.5;
         price /= aircraft.Capacity;
