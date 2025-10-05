@@ -1,0 +1,9 @@
+# docker-compose.yml
+version: '3.8'
+services:
+  api:
+    build: .
+    ports:
+      - "5000:80"
+    environment:
+      - ConnectionStrings_AirlineDB=Host=db;Database=airline;Username=postgres;Password=postgres
