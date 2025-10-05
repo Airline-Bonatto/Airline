@@ -1,4 +1,5 @@
 using Airline.DTO;
+using Airline.Exceptions;
 using Airline.Models;
 using Airline.Repositories.Interfaces;
 using Airline.RequestBodies;
@@ -48,17 +49,31 @@ public class AircraftController(IAircraftRepository aircraftRepository) : Contro
     [HttpPatch("update/{id}")]
     public IResult Update([FromBody] AircraftUpdateRequestBody updateData, int id)
     {
+        try
+        {
+            AircraftUpdateDTO updateDto = new(updateData, id);
+            _aircraftRepository.Update(updateDto);
+            return Results.Ok();
+        }
+        catch(EntityNotFoundException e)
+        {
+            return Results.NotFound(new { Message = e.Message });
+        }
 
-        AircraftUpdateDTO updateDto = new(updateData, id);
-        _aircraftRepository.Update(updateDto);
-        return Results.Ok();
+
     }
 
     [HttpDelete("{aircraftId}")]
-    public IResult Remove(int aircraftId)
+    public async Task<IResult> RemoveAsync(int aircraftId)
     {
-        AircraftUpdateDTO updateDto = new(aircraftId, null, null, null, DateTime.Now);
-        _aircraftRepository.Update(updateDto);
-        return Results.Ok();
+        try
+        {
+            await _aircraftRepository.DeleteAsync(aircraftId);
+            return Results.Ok();
+        }
+        catch(EntityNotFoundException e)
+        {
+            return Results.NotFound(new { Message = e.Message });
+        }
     }
 }

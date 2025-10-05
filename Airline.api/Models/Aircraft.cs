@@ -1,6 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
+using Airline.DTO;
+
 namespace Airline.Models;
 
 public class Aircraft
@@ -15,6 +17,13 @@ public class Aircraft
     public double AverageFuelConsumption { get; set; }
 
     public Aircraft() { }
+    public Aircraft(AircraftCreateDTO data)
+    {
+        Model = data.Model;
+        Capacity = data.Capacity;
+        Range = data.Range;
+        AverageFuelConsumption = data.AverageFuelConsumption;
+    }
 
     public void AddRoute(Route route)
     {

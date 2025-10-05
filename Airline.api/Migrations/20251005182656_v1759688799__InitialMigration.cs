@@ -9,13 +9,13 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Airline.Migrations
 {
     /// <inheritdoc />
-    public partial class v1759453397__Initial : Migration
+    public partial class v1759688799__InitialMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Aircraft",
+                name: "Aircrafts",
                 columns: table => new
                 {
                     AircraftID = table.Column<int>(type: "integer", nullable: false)
@@ -27,7 +27,7 @@ namespace Airline.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Aircraft", x => x.AircraftID);
+                    table.PrimaryKey("PK_Aircrafts", x => x.AircraftID);
                 });
 
             migrationBuilder.CreateTable(
@@ -47,9 +47,9 @@ namespace Airline.Migrations
                 {
                     table.PrimaryKey("PK_Route", x => x.RouteID);
                     table.ForeignKey(
-                        name: "FK_Route_Aircraft_AircraftID",
+                        name: "FK_Route_Aircrafts_AircraftID",
                         column: x => x.AircraftID,
-                        principalTable: "Aircraft",
+                        principalTable: "Aircrafts",
                         principalColumn: "AircraftID",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -67,7 +67,7 @@ namespace Airline.Migrations
                 name: "Route");
 
             migrationBuilder.DropTable(
-                name: "Aircraft");
+                name: "Aircrafts");
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿namespace Airline.RequestBodies;
 
 public record AircraftUpdateRequestBody(
-    int Capacity,
-    int Range,
-    double AverageFuelConsumption
+    int? Capacity,
+    int? Range,
+    double? AverageFuelConsumption
 );

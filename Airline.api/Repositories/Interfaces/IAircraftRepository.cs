@@ -10,4 +10,5 @@ public interface IAircraftRepository
     public Aircraft? GetAircraft(int aircraftId);
     public void Insert(AircraftCreateDTO createData);
     public void Update(AircraftUpdateDTO updateData);
+    public Task DeleteAsync(int aircraftId);
 }

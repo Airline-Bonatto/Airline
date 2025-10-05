@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Airline.Migrations
 {
     [DbContext(typeof(AirlineContext))]
-    [Migration("20251003011405_v1759453397__Initial")]
-    partial class v1759453397__Initial
+    [Migration("20251005182656_v1759688799__InitialMigration")]
+    partial class v1759688799__InitialMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -21,9 +21,6 @@ namespace Airline.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "9.0.9")
-                .HasAnnotation("Proxies:ChangeTracking", false)
-                .HasAnnotation("Proxies:CheckEquality", false)
-                .HasAnnotation("Proxies:LazyLoading", true)
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
@@ -51,7 +48,7 @@ namespace Airline.Migrations
 
                     b.HasKey("AircraftID");
 
-                    b.ToTable("Aircraft");
+                    b.ToTable("Aircrafts");
                 });
 
             modelBuilder.Entity("Airline.Models.Route", b =>

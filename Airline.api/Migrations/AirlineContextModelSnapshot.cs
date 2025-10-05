@@ -18,9 +18,6 @@ namespace Airline.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "9.0.9")
-                .HasAnnotation("Proxies:ChangeTracking", false)
-                .HasAnnotation("Proxies:CheckEquality", false)
-                .HasAnnotation("Proxies:LazyLoading", true)
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
@@ -48,7 +45,7 @@ namespace Airline.Migrations
 
                     b.HasKey("AircraftID");
 
-                    b.ToTable("Aircraft");
+                    b.ToTable("Aircrafts");
                 });
 
             modelBuilder.Entity("Airline.Models.Route", b =>

@@ -8,8 +8,7 @@ public record AircraftUpdateDTO
     int AircraftId,
     int? Capacity,
     double? Range,
-    double? AverageFuelConsumption,
-    DateTime? FinalDate = null
+    double? AverageFuelConsumption
 )
 {
     public AircraftUpdateDTO(AircraftUpdateRequestBody requestBody, int aircraftId)
