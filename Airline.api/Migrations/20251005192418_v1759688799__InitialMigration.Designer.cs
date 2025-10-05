@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Airline.Migrations
 {
     [DbContext(typeof(AirlineContext))]
-    [Migration("20251005182656_v1759688799__InitialMigration")]
+    [Migration("20251005192418_v1759688799__InitialMigration")]
     partial class v1759688799__InitialMigration
     {
         /// <inheritdoc />
@@ -62,10 +62,10 @@ namespace Airline.Migrations
                     b.Property<int>("AircraftID")
                         .HasColumnType("integer");
 
-                    b.Property<DateTime>("Arrival")
+                    b.Property<DateTimeOffset>("Arrival")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<DateTime>("Departure")
+                    b.Property<DateTimeOffset>("Departure")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<double>("Distance")
@@ -83,7 +83,7 @@ namespace Airline.Migrations
 
                     b.HasIndex("AircraftID");
 
-                    b.ToTable("Route");
+                    b.ToTable("Routes");
                 });
 
             modelBuilder.Entity("Airline.Models.Route", b =>

@@ -19,12 +19,10 @@ public class RouteController(IRouteRepository routeRepository) : ControllerBase
     [HttpPost("create")]
     public async Task<IResult> Create(
         [FromBody] RouteInsertRequestBody createData,
-        ICalculateRoutePriceService calculateRoutePriceService)
+        [FromServices] ICreateRouteService createRouteService
+    )
     {
-        double price = calculateRoutePriceService.CalculateRoutePrice(createData);
-        RouteMergeDTO mergeData = new(createData, price);
-        await _routeRepository.Insert(mergeData);
-
+        int routeId = await createRouteService.CreateAsync(createData);
         return Results.Created();
     }
 
@@ -32,7 +30,7 @@ public class RouteController(IRouteRepository routeRepository) : ControllerBase
     [HttpGet("list")]
     public async Task<IResult> List([FromQuery] RouteListFiltersDTO filters)
     {
-        List<Route> routes = await _routeRepository.List(filters);
+        IEnumerable<RouteListDTO> routes = await _routeRepository.ListAsync(filters);
         return Results.Ok(routes);
     }
 }

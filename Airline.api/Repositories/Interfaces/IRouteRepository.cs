@@ -6,6 +6,6 @@ namespace Airline.Repositories.Interfaces;
 
 public interface IRouteRepository
 {
-    public Task Insert(RouteMergeDTO createData);
-    public Task<List<Route>> List(RouteListFiltersDTO filters);
+    public Task<int> InsertAsync(Route route);
+    public Task<IEnumerable<RouteListDTO>> ListAsync(RouteListFiltersDTO filters);
 }

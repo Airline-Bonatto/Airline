@@ -27,6 +27,7 @@ builder.Services.Configure<Microsoft.AspNetCore.Http.Json.JsonOptions>(options =
 builder.Services.AddScoped<IAircraftRepository, AircraftRepository>();
 builder.Services.AddScoped<IRouteRepository, RouteRepository>();
 builder.Services.AddScoped<ICalculateRoutePriceService, CalculateRoutePriceService>();
+builder.Services.AddScoped<ICreateRouteService, CreateRouteService>();
 
 var app = builder.Build();
 

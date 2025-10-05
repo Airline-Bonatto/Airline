@@ -9,11 +9,10 @@ public record RouteMergeDTO(
     double Distance,
     string Arrival,
     string Departure,
-    double Price,
-    DateTime? FinalDate
+    decimal Price
 )
 {
-    public RouteMergeDTO(RouteInsertRequestBody requestBody, double price, DateTime? finalDate = null)
+    public RouteMergeDTO(RouteInsertRequestBody requestBody, decimal price)
         : this(
             requestBody.AircraftId,
             requestBody.From,
@@ -21,8 +20,7 @@ public record RouteMergeDTO(
             requestBody.Distance,
             requestBody.Arrival.ToString("yyyy-MM-ddTHH:mm:ss"),
             requestBody.Departure.ToString("yyyy-MM-ddTHH:mm:ss"),
-            price,
-            finalDate)
+            price)
     {
     }
 }

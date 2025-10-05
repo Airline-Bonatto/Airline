@@ -10,7 +10,7 @@ public class AirlineContext(DbContextOptions<AirlineContext> options) : DbContex
 {
 
     public DbSet<Aircraft> Aircrafts { get; set; }
-    public DbSet<Route> Route { get; set; }
+    public DbSet<Route> Routes { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

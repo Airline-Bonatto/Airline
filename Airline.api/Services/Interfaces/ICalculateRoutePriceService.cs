@@ -5,5 +5,5 @@ namespace Airline.Services.Interfaces;
 
 public interface ICalculateRoutePriceService
 {
-    public double CalculateRoutePrice(RouteInsertRequestBody routeData);
+    public decimal CalculateRoutePrice(RouteInsertRequestBody routeData);
 }

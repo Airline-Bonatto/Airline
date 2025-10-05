@@ -31,7 +31,7 @@ namespace Airline.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Route",
+                name: "Routes",
                 columns: table => new
                 {
                     RouteID = table.Column<int>(type: "integer", nullable: false)
@@ -39,15 +39,15 @@ namespace Airline.Migrations
                     AircraftID = table.Column<int>(type: "integer", nullable: false),
                     From = table.Column<string>(type: "text", nullable: false),
                     To = table.Column<string>(type: "text", nullable: false),
-                    Departure = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    Arrival = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    Departure = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
+                    Arrival = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
                     Distance = table.Column<double>(type: "double precision", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Route", x => x.RouteID);
+                    table.PrimaryKey("PK_Routes", x => x.RouteID);
                     table.ForeignKey(
-                        name: "FK_Route_Aircrafts_AircraftID",
+                        name: "FK_Routes_Aircrafts_AircraftID",
                         column: x => x.AircraftID,
                         principalTable: "Aircrafts",
                         principalColumn: "AircraftID",
@@ -55,8 +55,8 @@ namespace Airline.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Route_AircraftID",
-                table: "Route",
+                name: "IX_Routes_AircraftID",
+                table: "Routes",
                 column: "AircraftID");
         }
 
@@ -64,7 +64,7 @@ namespace Airline.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Route");
+                name: "Routes");
 
             migrationBuilder.DropTable(
                 name: "Aircrafts");

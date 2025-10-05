@@ -9,12 +9,12 @@ public class CalculateRoutePriceService(IAircraftRepository aircraftRepository) 
 {
     private readonly IAircraftRepository _aircraftRepository = aircraftRepository;
 
-    public double CalculateRoutePrice(RouteInsertRequestBody routeData)
+    public decimal CalculateRoutePrice(RouteInsertRequestBody routeData)
     {
 
         Aircraft aircraft = _aircraftRepository.GetAircraft(routeData.AircraftId) ?? throw new ArgumentException("Aircraft not found!");
 
-        double price = aircraft.AverageFuelConsumption * routeData.Distance * 3.5;
+        decimal price = (decimal)aircraft.AverageFuelConsumption * (decimal)routeData.Distance * 3.5m;
         price /= aircraft.Capacity;
 
         return price;
