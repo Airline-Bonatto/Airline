@@ -30,6 +30,7 @@ builder.Services.AddScoped<ICalculateRoutePriceService, CalculateRoutePriceServi
 builder.Services.AddScoped<ICreateRouteService, CreateRouteService>();
 builder.Services.AddScoped<IFlightRepository, FlightRepository>();
 builder.Services.AddScoped<IFlightCreateService, FlightCreateService>();
+builder.Services.AddScoped<IFlightDetailService, FlightDetailService>();
 
 var app = builder.Build();
 
