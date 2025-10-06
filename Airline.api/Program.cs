@@ -28,6 +28,8 @@ builder.Services.AddScoped<IAircraftRepository, AircraftRepository>();
 builder.Services.AddScoped<IRouteRepository, RouteRepository>();
 builder.Services.AddScoped<ICalculateRoutePriceService, CalculateRoutePriceService>();
 builder.Services.AddScoped<ICreateRouteService, CreateRouteService>();
+builder.Services.AddScoped<IFlightRepository, FlightRepository>();
+builder.Services.AddScoped<IFlightCreateService, FlightCreateService>();
 
 var app = builder.Build();
 

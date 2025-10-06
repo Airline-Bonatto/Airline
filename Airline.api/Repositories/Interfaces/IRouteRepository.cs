@@ -8,4 +8,5 @@ public interface IRouteRepository
 {
     public Task<int> InsertAsync(Route route);
     public Task<IEnumerable<RouteListDTO>> ListAsync(RouteListFiltersDTO filters);
+    public Task<Route?> GetByIdAsync(int id);
 }

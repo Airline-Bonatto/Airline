@@ -43,4 +43,8 @@ public class RouteRepository(AirlineContext context) : IRouteRepository
 
         return routes;
     }
+    public async Task<Route?> GetByIdAsync(int id)
+    {
+        return await _context.Routes.FirstOrDefaultAsync(r => r.RouteID == id);
+    }
 }
