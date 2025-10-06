@@ -4,9 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 
 public record RouteListFiltersDTO
 {
-    [FromQuery(Name = "aircraftId")]
-    public int? AircraftId { get; init; } = null;
-
     [FromQuery(Name = "from")]
     public string? From { get; init; } = null;
 
