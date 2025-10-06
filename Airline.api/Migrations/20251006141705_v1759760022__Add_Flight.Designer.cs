@@ -3,6 +3,7 @@ using System;
 using Airline.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Airline.Migrations
 {
     [DbContext(typeof(AirlineContext))]
-    partial class AirlineContextModelSnapshot : ModelSnapshot
+    [Migration("20251006141705_v1759760022__Add_Flight")]
+    partial class v1759760022__Add_Flight
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -85,6 +88,9 @@ namespace Airline.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("RouteID"));
 
+                    b.Property<int?>("AircraftID")
+                        .HasColumnType("integer");
+
                     b.Property<double>("Distance")
                         .HasColumnType("double precision");
 
@@ -97,6 +103,8 @@ namespace Airline.Migrations
                         .HasColumnType("text");
 
                     b.HasKey("RouteID");
+
+                    b.HasIndex("AircraftID");
 
                     b.ToTable("Routes");
                 });
@@ -118,6 +126,18 @@ namespace Airline.Migrations
                     b.Navigation("Aircraft");
 
                     b.Navigation("Route");
+                });
+
+            modelBuilder.Entity("Airline.Models.Route", b =>
+                {
+                    b.HasOne("Airline.Models.Aircraft", null)
+                        .WithMany("Routes")
+                        .HasForeignKey("AircraftID");
+                });
+
+            modelBuilder.Entity("Airline.Models.Aircraft", b =>
+                {
+                    b.Navigation("Routes");
                 });
 #pragma warning restore 612, 618
         }

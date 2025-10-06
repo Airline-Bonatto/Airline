@@ -3,24 +3,16 @@ using Airline.RequestBodies;
 namespace Airline.DTO;
 
 public record RouteMergeDTO(
-    int AircraftId,
     string From,
     string To,
-    double Distance,
-    string Arrival,
-    string Departure,
-    decimal Price
+    double Distance
 )
 {
-    public RouteMergeDTO(RouteInsertRequestBody requestBody, decimal price)
+    public RouteMergeDTO(RouteInsertRequestBody requestBody)
         : this(
-            requestBody.AircraftId,
             requestBody.From,
             requestBody.To,
-            requestBody.Distance,
-            requestBody.Arrival.ToString("yyyy-MM-ddTHH:mm:ss"),
-            requestBody.Departure.ToString("yyyy-MM-ddTHH:mm:ss"),
-            price)
+            requestBody.Distance)
     {
     }
 }

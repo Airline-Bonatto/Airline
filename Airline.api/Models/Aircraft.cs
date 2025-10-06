@@ -10,7 +10,6 @@ public class Aircraft
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int AircraftID { get; set; }
-    public virtual ICollection<Route> Routes { get; set; } = [];
     public string Model { get; set; } = string.Empty;
     public int Capacity { get; set; }
     public double Range { get; set; }
@@ -24,10 +23,4 @@ public class Aircraft
         Range = data.Range;
         AverageFuelConsumption = data.AverageFuelConsumption;
     }
-
-    public void AddRoute(Route route)
-    {
-        Routes.Add(route);
-    }
-
 }

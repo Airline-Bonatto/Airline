@@ -38,10 +38,7 @@ public class RouteRepository(AirlineContext context) : IRouteRepository
             .Select(r => new RouteListDTO(
                 r.RouteID,
                 r.From,
-                r.To,
-                r.Departure,
-                r.Arrival,
-                r.Price
+                r.To
             )).ToListAsync();
 
         return routes;

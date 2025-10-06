@@ -11,13 +11,14 @@ public class AirlineContext(DbContextOptions<AirlineContext> options) : DbContex
 
     public DbSet<Aircraft> Aircrafts { get; set; }
     public DbSet<Route> Routes { get; set; }
+    public DbSet<Flight> Flights { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
-        modelBuilder.Entity<Aircraft>()
-            .HasMany(a => a.Routes)
-            .WithOne(r => r.Aircraft);
+        // modelBuilder.Entity<Aircraft>()
+        //     .HasMany(a => a.Routes)
+        //     .WithOne(r => r.Aircraft);
     }
 
 }
