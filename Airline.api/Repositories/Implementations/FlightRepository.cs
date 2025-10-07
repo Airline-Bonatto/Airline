@@ -1,4 +1,5 @@
 using Airline.Database;
+using Airline.DTO;
 using Airline.Models;
 using Airline.Repositories.Interfaces;
 
@@ -23,5 +24,15 @@ public class FlightRepository(AirlineContext context) : IFlightRepository
             .Include(f => f.Aircraft)
             .Include(f => f.Route)
             .FirstOrDefaultAsync(f => f.FlightId == id);
+    }
+
+    public async Task<IEnumerable<Flight>> ListAsync(FlightListFilterDto filter)
+    {
+        return await _context.Flights
+            .Include(f => f.Aircraft)
+            .Include(f => f.Route)
+            .Where(f => f.Route.From == filter.From)
+            .Where(f => f.Route.To == filter.To)
+            .ToListAsync();
     }
 }

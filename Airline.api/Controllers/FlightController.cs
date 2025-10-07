@@ -13,12 +13,14 @@ namespace Airline.Controllers;
 [Route("flight")]
 public class FlightController(
     IFlightCreateService flightCreateService,
-    IFlightDetailService flightDetailService
+    IFlightDetailService flightDetailService,
+    IFlightRepository flightRepository
     ) : ControllerBase
 {
 
     private readonly IFlightCreateService _flightCreateService = flightCreateService;
     private readonly IFlightDetailService _flightDetailService = flightDetailService;
+    private readonly IFlightRepository _flightRepository = flightRepository;
 
     [HttpPost("create")]
     public async Task<IResult> Create([FromBody] FlightCreateDTO data)
@@ -45,6 +47,14 @@ public class FlightController(
         catch(EntityNotFoundException ex)
         {
             return Results.NotFound(new { Message = ex.Message });
-        }   
+        }
+    }
+
+    [HttpGet("list")]
+    public async Task<IResult> List([FromQuery] FlightListFilterDto filter)
+    {
+        IEnumerable<Flight> flights = await _flightRepository.ListAsync(filter);
+        IEnumerable<FlightListDTO> flightDtos = flights.Select(flight => new FlightListDTO(flight));
+        return Results.Ok(flightDtos);
     }
 }

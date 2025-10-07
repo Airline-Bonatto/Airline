@@ -16,7 +16,7 @@ public class FlightDetailService(
     {
 
         Flight? flight = await _flightRepository.GetByIdAsync(flightId);
-        if (flight == null)
+        if(flight == null)
         {
             throw new EntityNotFoundException("Flight not found");
         }
