@@ -32,6 +32,7 @@ builder.Services.AddScoped<IFlightCreateService, FlightCreateService>();
 builder.Services.AddScoped<IFlightDetailService, FlightDetailService>();
 builder.Services.AddScoped<ISeatCreateService, SeatCreateService>();
 builder.Services.AddScoped<ISeatRepository, SeatRepository>();
+builder.Services.AddScoped<SeatListService>();
 
 var app = builder.Build();
 

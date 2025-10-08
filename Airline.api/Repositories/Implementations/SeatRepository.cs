@@ -1,6 +1,9 @@
 using Airline.Database;
+using Airline.DTO;
 using Airline.Models;
 using Airline.Repositories.Interfaces;
+
+using Microsoft.EntityFrameworkCore;
 
 namespace Airline.Repositories.Implementations;
 
@@ -12,5 +15,17 @@ public class SeatRepository(AirlineContext context) : ISeatRepository
     {
         _context.Seats.AddRange(seats);
         await _context.SaveChangesAsync();
+    }
+
+    public async Task<IEnumerable<Seat>> ListAsync(SeatListFilterDTO filter)
+    {
+        IQueryable<Seat> query = _context.Seats.AsQueryable();
+
+        query = query
+        .Include(s => s.Flight)
+        .Where(s => s.Flight.FlightId == filter.FlightId);
+
+
+        return await Task.FromResult(query.ToList());
     }
 }
