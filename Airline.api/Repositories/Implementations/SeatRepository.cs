@@ -22,7 +22,6 @@ public class SeatRepository(AirlineContext context) : ISeatRepository
         IQueryable<Seat> query = _context.Seats.AsQueryable();
 
         query = query
-        .Include(s => s.Flight)
         .Where(s => s.Flight.FlightId == filter.FlightId);
 
 

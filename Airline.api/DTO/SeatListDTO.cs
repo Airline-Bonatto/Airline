@@ -16,7 +16,7 @@ public class SeatListDTO
     public SeatListDTO(Seat seat)
     {
         SeatId = seat.SeatId;
-        FlightId = seat.Flight.FlightId;
+        FlightId = seat.FlightId;
         SeatNumber = seat.SeatNumber;
         Row = seat.Row;
         IsAvailable = seat.IsAvailable;

@@ -17,6 +17,7 @@ public class Seat
     public bool IsAvailable { get; set; }
     public decimal Price { get; set; }
     public SeatClassEnum SeatClass { get; set; }
+    public int FlightId { get; set; }
     public virtual Flight Flight { get; set; } = null!;
 
 
