@@ -26,11 +26,12 @@ builder.Services.Configure<Microsoft.AspNetCore.Http.Json.JsonOptions>(options =
 
 builder.Services.AddScoped<IAircraftRepository, AircraftRepository>();
 builder.Services.AddScoped<IRouteRepository, RouteRepository>();
-builder.Services.AddScoped<ICalculateRoutePriceService, CalculateRoutePriceService>();
 builder.Services.AddScoped<ICreateRouteService, CreateRouteService>();
 builder.Services.AddScoped<IFlightRepository, FlightRepository>();
 builder.Services.AddScoped<IFlightCreateService, FlightCreateService>();
 builder.Services.AddScoped<IFlightDetailService, FlightDetailService>();
+builder.Services.AddScoped<ISeatCreateService, SeatCreateService>();
+builder.Services.AddScoped<ISeatRepository, SeatRepository>();
 
 var app = builder.Build();
 

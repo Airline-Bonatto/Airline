@@ -14,6 +14,7 @@ public class Flight
     public required virtual Aircraft Aircraft { get; set; } = null!;
     public DateTimeOffset Departure { get; set; }
     public DateTimeOffset Arrival { get; set; }
+    public ICollection<Seat> Seats { get; set; } = new List<Seat>();
 
     public Flight() { }
 

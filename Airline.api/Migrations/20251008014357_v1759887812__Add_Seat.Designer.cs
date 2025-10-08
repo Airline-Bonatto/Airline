@@ -3,6 +3,7 @@ using System;
 using Airline.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Airline.Migrations
 {
     [DbContext(typeof(AirlineContext))]
-    partial class AirlineContextModelSnapshot : ModelSnapshot
+    [Migration("20251008014357_v1759887812__Add_Seat")]
+    partial class v1759887812__Add_Seat
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -133,37 +136,6 @@ namespace Airline.Migrations
                     b.HasIndex("FlightId");
 
                     b.ToTable("Seats");
-                });
-
-            modelBuilder.Entity("Airline.Models.SeatClass", b =>
-                {
-                    b.Property<int>("Id")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("SeatClasses");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 0,
-                            Description = "Economic"
-                        },
-                        new
-                        {
-                            Id = 1,
-                            Description = "Executive"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Description = "FirstClass"
-                        });
                 });
 
             modelBuilder.Entity("Airline.Models.Flight", b =>
