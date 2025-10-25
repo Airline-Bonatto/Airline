@@ -2,6 +2,7 @@
 
 using System.Text.Json.Serialization;
 
+using Airline.Configuration;
 using Airline.Database;
 using Airline.Repositories.Implementations;
 using Airline.Repositories.Interfaces;
@@ -33,6 +34,9 @@ builder.Services.AddScoped<IFlightDetailService, FlightDetailService>();
 builder.Services.AddScoped<ISeatCreateService, SeatCreateService>();
 builder.Services.AddScoped<ISeatRepository, SeatRepository>();
 builder.Services.AddScoped<SeatListService>();
+
+builder.Services.AddJwtAuthentication(builder.Configuration);
+builder.Services.Configure<JwtConfiguration>(builder.Configuration.GetSection("Jwt"));
 
 var app = builder.Build();
 
