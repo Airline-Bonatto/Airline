@@ -28,11 +28,24 @@ public class FlightRepository(AirlineContext context) : IFlightRepository
 
     public async Task<IEnumerable<Flight>> ListAsync(FlightListFilterDto filter)
     {
-        return await _context.Flights
+
+        IQueryable<Flight> query = _context.Flights
             .Include(f => f.Aircraft)
             .Include(f => f.Route)
             .Where(f => f.Route.From == filter.From)
-            .Where(f => f.Route.To == filter.To)
-            .ToListAsync();
+            .Where(f => f.Route.To == filter.To);
+
+
+        if(filter.StartDepartureDate.HasValue)
+        {
+            query = query.Where(f => f.Departure.Date >= filter.StartDepartureDate);
+        }
+
+        if(filter.EndDepartureDate.HasValue)
+        {
+            query = query.Where(f => f.Departure.Date <= filter.EndDepartureDate);
+        }
+
+        return await query.ToListAsync();
     }
 }
