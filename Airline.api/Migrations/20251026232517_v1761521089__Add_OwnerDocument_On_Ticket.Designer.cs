@@ -3,6 +3,7 @@ using System;
 using Airline.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Airline.Migrations
 {
     [DbContext(typeof(AirlineContext))]
-    partial class AirlineContextModelSnapshot : ModelSnapshot
+    [Migration("20251026232517_v1761521089__Add_OwnerDocument_On_Ticket")]
+    partial class v1761521089__Add_OwnerDocument_On_Ticket
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

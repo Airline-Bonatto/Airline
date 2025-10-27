@@ -10,4 +10,7 @@ public class TicketPurchaseRequestDTO
 
     [JsonPropertyName("userId")]
     public int AirlineUserId { get; set; }
+
+    [JsonPropertyName("ownerDocument")]
+    public string OwnerDocument { get; set; } = null!;
 }

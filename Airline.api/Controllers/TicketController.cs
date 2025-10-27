@@ -22,10 +22,16 @@ public class TicketController(
         {
             int ticketId = await _ticketPurchaseService.PurchaseTicketAsync(request);
             return Ok(new { TicketId = ticketId });
-        }catch(EntityNotFoundException ex)
+        }
+        catch(EntityNotFoundException ex)
         {
-            return NotFound(new {ex.Message });
-        }catch(Exception)
+            return NotFound(new { ex.Message });
+        }
+        catch(TicketPurchaseException ex)
+        {
+            return BadRequest(new { ex.Message });
+        }
+        catch(Exception)
         {
             return StatusCode(500, new { Message = "An error occurred while processing the request." });
         }
