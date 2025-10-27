@@ -36,6 +36,8 @@ public class TicketPurchaseService(
             throw new TicketPurchaseException("This user already has a ticket for this flight.");
         }
 
+        seat.IsAvailable = false;
+        await _seatRepository.UpdateAsync(seat);
         Ticket ticket = new(ticketData);
         return await _ticketRepository.AddTicketAsync(ticket);
     }
