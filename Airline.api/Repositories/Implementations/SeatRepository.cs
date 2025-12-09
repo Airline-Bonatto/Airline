@@ -27,4 +27,16 @@ public class SeatRepository(AirlineContext context) : ISeatRepository
 
         return await Task.FromResult(query.ToList());
     }
+
+    public async Task<Seat?> GetSeatByIdAsync(int seatId)
+    {
+        return await _context.Seats.FindAsync(seatId);
+    }
+
+    public async Task UpdateAsync(Seat seat)
+    {
+        _context.Seats.Update(seat);
+        await _context.SaveChangesAsync();
+    }
+
 }

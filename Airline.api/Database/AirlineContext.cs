@@ -14,6 +14,8 @@ public class AirlineContext(DbContextOptions<AirlineContext> options) : DbContex
     public DbSet<Flight> Flights { get; set; }
     public DbSet<Seat> Seats { get; set; }
     public DbSet<SeatClass> SeatClasses { get; set; }
+    public DbSet<AirlineUser> AirlineUsers { get; set; }
+    public DbSet<Ticket> Tickets { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
