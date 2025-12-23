@@ -1,4 +1,6 @@
 
+using System.ComponentModel.DataAnnotations;
+
 using Airline.DTO;
 using Airline.Repositories.Interfaces;
 using Airline.RequestBodies;
@@ -22,8 +24,20 @@ public class RouteController(IRouteRepository routeRepository) : ControllerBase
         [FromServices] ICreateRouteService createRouteService
     )
     {
-        int routeId = await createRouteService.CreateAsync(createData);
-        return Results.Created();
+        try
+        {
+            int routeId = await createRouteService.CreateAsync(createData);
+            return Results.Created();
+        }
+        catch(ValidationException ex)
+        {
+            return Results.BadRequest(new { Errors = ex.Message });
+        }
+        catch(Exception)
+        {
+            return Results.InternalServerError("Unexpected error occurred.");
+        }
+
     }
 
 

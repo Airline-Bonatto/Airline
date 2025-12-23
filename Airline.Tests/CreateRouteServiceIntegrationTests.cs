@@ -6,6 +6,8 @@ using Airline.Services.Implementations;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using Xunit;
+using System.ComponentModel.DataAnnotations;
+using Airline.Validators;
 
 namespace Airline.Tests;
 
@@ -125,20 +127,19 @@ public class CreateRouteServiceIntegrationTests : IntegrationTestBase
     }
 
     [Fact]
-    public async void CreateAsync_DuplicateRoutes_ShouldCreateSeparateEntries()
+    public async void CreateAsync_DuplicateRoutes_ShouldThrowValidationException()
     {
         // Arrange 
         RouteInsertRequestBody route1 = new("São Paulo", "Brasília", 1000.0);
         RouteInsertRequestBody route2 = new("São Paulo", "Brasília", 1000.0);
 
-        // Act
-        int id1 = await _createRouteService.CreateAsync(route1);
-        int id2 = await _createRouteService.CreateAsync(route2);
-
-        // Assert - 
-        Assert.NotEqual(id1, id2);
+        // Act & Assert
+        await _createRouteService.CreateAsync(route1);
+        await Assert.ThrowsAsync<ValidationException>(async () => 
+            await _createRouteService.CreateAsync(route2)
+        );
 
         List<Route> routesInDb = await Context.Routes.ToListAsync();
-        Assert.Equal(2, routesInDb.Count);
+        Assert.Single(routesInDb);
     }
 }
