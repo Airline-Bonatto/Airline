@@ -10,8 +10,8 @@ public class Flight
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int FlightId { get; set; }
-    public required virtual Route Route { get; set; } = null!;
-    public required virtual Aircraft Aircraft { get; set; } = null!;
+    public required virtual Route Route { get; set; }
+    public required virtual Aircraft Aircraft { get; set; }
     public DateTimeOffset Departure { get; set; }
     public DateTimeOffset Arrival { get; set; }
     public ICollection<Seat> Seats { get; set; } = new List<Seat>();
