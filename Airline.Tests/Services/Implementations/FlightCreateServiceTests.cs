@@ -12,7 +12,7 @@ using Xunit;
 
 using Route = Airline.Models.Route;
 
-namespace Airline.Tests;
+namespace Airline.Tests.Services.Implementations;
 
 public class FlightCreateServiceTests : IntegrationTestBase
 {

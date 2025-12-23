@@ -6,7 +6,7 @@ using Xunit;
 using System.Linq;
 using System.Collections.Generic;
 
-namespace Airline.Tests;
+namespace Airline.Tests.Controllers;
 
 
 public class AircraftControllerIntegrationTests : IntegrationTestBase

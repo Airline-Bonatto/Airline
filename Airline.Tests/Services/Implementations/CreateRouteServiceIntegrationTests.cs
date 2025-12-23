@@ -9,7 +9,7 @@ using Xunit;
 using System.ComponentModel.DataAnnotations;
 using Airline.Validators;
 
-namespace Airline.Tests;
+namespace Airline.Tests.Services.Implementations;
 
 public class CreateRouteServiceIntegrationTests : IntegrationTestBase
 {
