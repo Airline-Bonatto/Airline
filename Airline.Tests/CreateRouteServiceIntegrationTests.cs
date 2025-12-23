@@ -135,7 +135,7 @@ public class CreateRouteServiceIntegrationTests : IntegrationTestBase
 
         // Act & Assert
         await _createRouteService.CreateAsync(route1);
-        await Assert.ThrowsAsync<ValidationException>(async () => 
+        await Assert.ThrowsAsync<ValidationException>(async () =>
             await _createRouteService.CreateAsync(route2)
         );
 
