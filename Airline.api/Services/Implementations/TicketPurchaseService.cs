@@ -19,16 +19,8 @@ public class TicketPurchaseService(
 
     public async Task<int> PurchaseTicketAsync(TicketPurchaseRequestDTO ticketData)
     {
-        Seat? seat = await _seatRepository.GetSeatByIdAsync(ticketData.SeatId);
-        AirlineUser? user = await _airlineUserRepository.GetUserByIdAsync(ticketData.AirlineUserId);
-        if(user == null)
-        {
-            throw new EntityNotFoundException("User not found.");
-        }
-        if(seat == null)
-        {
-            throw new EntityNotFoundException("Seat not found.");
-        }
+        Seat seat = await _seatRepository.GetSeatByIdAsync(ticketData.SeatId) ?? throw new EntityNotFoundException("Seat not found.");
+        AirlineUser _ = await _airlineUserRepository.GetUserByIdAsync(ticketData.AirlineUserId) ?? throw new EntityNotFoundException("User not found.");
 
         Ticket? ownerTicket = await _ticketRepository.GetByOwnerDocumentAndFlightAsync(ticketData.OwnerDocument, seat.FlightId);
         if(ownerTicket != null)

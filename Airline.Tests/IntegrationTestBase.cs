@@ -1,6 +1,8 @@
 
 using System;
+
 using Airline.Database;
+
 using Microsoft.EntityFrameworkCore;
 
 namespace Airline.Tests;

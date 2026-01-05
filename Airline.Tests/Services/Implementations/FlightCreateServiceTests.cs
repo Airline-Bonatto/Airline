@@ -2,12 +2,15 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+
 using Airline.DTO;
 using Airline.Exceptions;
 using Airline.Models;
 using Airline.Repositories.Implementations;
 using Airline.Services.Implementations;
+
 using Microsoft.EntityFrameworkCore;
+
 using Xunit;
 
 using Route = Airline.Models.Route;

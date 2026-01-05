@@ -1,13 +1,16 @@
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+
 using Airline.Models;
 using Airline.Repositories.Implementations;
 using Airline.RequestBodies;
 using Airline.Services.Implementations;
-using Microsoft.EntityFrameworkCore;
-using System.Linq;
-using Xunit;
-using System.ComponentModel.DataAnnotations;
 using Airline.Validators;
+
+using Microsoft.EntityFrameworkCore;
+
+using Xunit;
 
 namespace Airline.Tests.Services.Implementations;
 

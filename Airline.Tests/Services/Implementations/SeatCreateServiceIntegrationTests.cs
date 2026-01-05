@@ -2,13 +2,16 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+
 using Airline.DTO;
 using Airline.Enuns;
 using Airline.Exceptions;
 using Airline.Models;
 using Airline.Repositories.Implementations;
 using Airline.Services.Implementations;
+
 using Microsoft.EntityFrameworkCore;
+
 using Xunit;
 
 namespace Airline.Tests.Services.Implementations;
@@ -28,14 +31,14 @@ public class SeatCreateServiceIntegrationTests : IntegrationTestBase
 
     private async Task<Flight> CreateTestFlightAsync()
     {
-        Route route = new (new RouteMergeDTO(
+        Route route = new(new RouteMergeDTO(
             From: "São Paulo",
             To: "Rio de Janeiro",
             Distance: 430.5
         ));
         Context.Routes.Add(route);
 
-        Aircraft aircraft = new (new AircraftCreateDTO(
+        Aircraft aircraft = new(new AircraftCreateDTO(
             Model: "Boeing 737",
             Capacity: 180,
             Range: 5000.0,
@@ -45,7 +48,7 @@ public class SeatCreateServiceIntegrationTests : IntegrationTestBase
 
         await Context.SaveChangesAsync();
 
-        Flight flight = new (new FlightCreateDTO(
+        Flight flight = new(new FlightCreateDTO(
             RouteId: route.RouteID,
             AircraftId: aircraft.AircraftID,
             Departure: DateTimeOffset.Now.AddDays(1),
@@ -79,20 +82,20 @@ public class SeatCreateServiceIntegrationTests : IntegrationTestBase
 
         // Assert
         List<Seat> seatsInDb = await Context.Seats.Where(s => s.FlightId == flight.FlightId).ToListAsync();
-        
+
 
         List<Seat> economicSeats = seatsInDb
             .Where(s => s.FlightId == flight.FlightId && s.SeatClass == SeatClassEnum.Economic)
             .ToList();
-        
+
         List<Seat> executiveSeats = seatsInDb
             .Where(s => s.FlightId == flight.FlightId && s.SeatClass == SeatClassEnum.Executive)
             .ToList();
-        
+
         List<Seat> firstClassSeats = seatsInDb
             .Where(s => s.FlightId == flight.FlightId && s.SeatClass == SeatClassEnum.FirstClass)
             .ToList();
-        
+
         Assert.Equal(22, seatsInDb.Count);
         Assert.Equal(12, economicSeats.Count);
         Assert.Equal(6, executiveSeats.Count);

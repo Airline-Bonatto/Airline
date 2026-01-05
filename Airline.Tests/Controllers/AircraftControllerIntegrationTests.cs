@@ -1,10 +1,12 @@
+using System.Collections.Generic;
+using System.Linq;
+
 using Airline.DTO;
 using Airline.Models;
 using Airline.Repositories.Implementations;
 using Airline.Repositories.Interfaces;
+
 using Xunit;
-using System.Linq;
-using System.Collections.Generic;
 
 namespace Airline.Tests.Controllers;
 

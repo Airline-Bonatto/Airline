@@ -1,13 +1,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+
 using Airline.DTO;
+using Airline.Enuns;
 using Airline.Exceptions;
 using Airline.Models;
 using Airline.Repositories.Interfaces;
 using Airline.Services.Implementations;
-using Airline.Enuns;
+
 using Moq;
+
 using Xunit;
 
 namespace Airline.Tests.Services.Implementations
