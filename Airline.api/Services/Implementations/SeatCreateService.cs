@@ -19,16 +19,24 @@ public class SeatCreateService(
         if(flight is null)
             throw new EntityNotFoundException("Flight not found");
 
-        AddSeats(flight, data.QuantityEconomic, Enuns.SeatClassEnum.Economic, 6);
-        AddSeats(flight, data.QuantityExecutive, Enuns.SeatClassEnum.Executive, 6);
-        AddSeats(flight, data.QuantityFirstClass, Enuns.SeatClassEnum.FirstClass, 4);
+        List<Seat> newSeats = new();
 
-        await _seatRepository.AddRangeAsync(flight.Seats);
+        newSeats.AddRange(AddSeats(flight, data.QuantityEconomic, Enuns.SeatClassEnum.Economic, 6));
+        newSeats.AddRange(AddSeats(flight, data.QuantityExecutive, Enuns.SeatClassEnum.Executive, 6));
+        newSeats.AddRange(AddSeats(flight, data.QuantityFirstClass, Enuns.SeatClassEnum.FirstClass, 4));
+
+        foreach(var seat in newSeats)
+        {
+            flight.Seats.Add(seat);
+        }
+
+        await _seatRepository.AddRangeAsync(newSeats);
 
     }
 
-    private static void AddSeats(Flight flight, int quantity, Enuns.SeatClassEnum seatClass, int seatsPerRow)
+    private static List<Seat> AddSeats(Flight flight, int quantity, Enuns.SeatClassEnum seatClass, int seatsPerRow)
     {
+        List<Seat> seatsList = new();
         for(int i = 0; i < quantity; i++)
         {
             SeatCreateDTO seatData = new()
@@ -42,7 +50,9 @@ public class SeatCreateService(
                 Distance = flight.Route.Distance
             };
             Seat seat = Seat.Create(seatData);
-            flight.Seats.Add(seat);
+            seat.FlightId = flight.FlightId;
+            seatsList.Add(seat);
         }
+        return seatsList;
     }
 }
